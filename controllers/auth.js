@@ -1,5 +1,7 @@
 let router = require('express').Router()
 let db = require('../models')
+require('dotenv').config()
+let jwt = require('jsonwebtoken')
 
 router.post('/login', (req,res) => {
     res.send('STUB - POST/LOGIN')
