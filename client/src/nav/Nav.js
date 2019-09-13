@@ -44,6 +44,9 @@ class Nav extends React.Component {
                 <li>
                 <Link to="/">Home</Link>
                 </li>
+                <li>
+                <Link to="/rent">Rent</Link>
+                </li>
                 {links}
             </ul>
         </nav>
