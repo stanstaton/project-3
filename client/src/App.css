@@ -9,8 +9,8 @@
 }
 
 .App-header {
-  background-color: #31f700;
-  min-height: 10vh;
+  background-color: #282c34;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,15 +19,35 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+nav {
+  background-color: rgb(11, 14, 13);
+  padding: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul {
+  list-style-type: none;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a, nav a:visited  {
+  text-decoration: none;
+  font-size: 32px;
+  color: mediumspringgreen;
+  padding: 0 20px;
+}
+nav a:hover {
+  color: hotpink;
+}
+
+.sign-up-form {
+  border: 2px solid green;
+  min-width: 100%;
+  padding: 20px;
+}
+
+.red {
+  color: red;
 }
