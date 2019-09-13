@@ -6,7 +6,7 @@ let app = express();
 
 
 //controllers
-
+app.use('/auth', require('./controllers/auth'))
 
 //routes
 app.get('*', (req,res) => {
