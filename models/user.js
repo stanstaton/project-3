@@ -29,9 +29,10 @@ userSchema.pre('save', function(next) {
     next()
 })
 
-//Ensure that password dosn't get sent with rest of data
+//Ensure that password doesnt get set with the rest of the data
 userSchema.set('toJSON', {
-    transform: (doc,user) => {
+    transform: (doc, user) => {
+
         delete user.password
         return user
     }
