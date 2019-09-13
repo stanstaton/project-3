@@ -6,12 +6,13 @@ import Home from '../pages/Home'
 import Profile from '../pages/Profile'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
+import Rent from '../form/Rent'
 
 const Content = props => {
     return (
         <div className="container">
             <Route exact path="/" component={Home} />
-
+            <Route exact path="/rent" component={Rent} />
             <Route exact path="/profile" render={
                () => <Profile user={props.user} /> 
             } />
