@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import SERVER_URL from '.././constants'
 
+
 class Signup extends React.Component {
     state = {
         firstname: '',
@@ -21,22 +22,23 @@ class Signup extends React.Component {
         console.log('form was submitted', this.state, SERVER_URL)
         //send the user sig up data to the server
         axios.post(`${SERVER_URL}/auth/signup`, this.state)
-        .then(response => {
-            console.log('SUCCESS', response)
+            .then(response => {
+                console.log('SUCCESS', response)
 
-            //Store Token in localStorage (with an argument thats specific to your app)
-            localStorage.setItem('mernToken', response.data.token)
+                //Store Token in localStorage (with an argument thats specific to your app)
+                localStorage.setItem('mernToken', response.data.token)
 
-            //Update App with user info
-            this.props.updateUser()
-        })
-        .catch(err => {
-            console.log('ERROR', err.response.data.message)
-        })
+                //Update App with user info
+                this.props.updateUser()
+            })
+            .catch(err => {
+                console.log('ERROR', err.response.data.message)
+            })
     }
     render() {
+        
         //if user signs up, redirect to profile page
-        if(this.props.user) {
+        if (this.props.user) {
             return <Redirect to="/profile" />
         }
         return (
@@ -64,6 +66,7 @@ class Signup extends React.Component {
                         <input name="profileUrl" placeholder="Your profile image" onChange={this.storeInput}/>
                     </div>
                         <button type="submit">Sign Me Up!</button>
+
                 </form>
             </div>
         )
