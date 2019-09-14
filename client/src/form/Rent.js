@@ -6,25 +6,20 @@ import { Col, Row, CustomInput, Button, Form, FormGroup, Label, Input, FormText 
 
 
 class Rent extends React.Component {
+    state = {
+        currentNeighborhood: '',
+        propertiesName: 'Property Name',
+        image: 'https://placebear.com/200/300',
+        unAvailable: false
 
+    }
     handleRentalSubmit = (e) => {
         e.preventDefault()
-        console.log('submitted!')
-        //send selected neighborhood data
-        axios.get()
-        .then(response => {
-            console.log('SUCCESS', response)
-
-            //Store Token in localStorage (with an argument thats specific to your app)
-            
-            //
-           
-        })
-        .catch(err => {
-            console.log('ERROR', err)
-        })
+        console.log('submitted!', e.target.name.value)
+        // axios.get()
+        // .then()
+        // .catch()
     }
-
     render() {
     return (
         <div className='Rental Form'>
@@ -33,7 +28,7 @@ class Rent extends React.Component {
         <FormGroup>
           <Label for="exampleCustomSelect">Select Neighborhood</Label>
           <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
-            <option>Seattle</option>
+            <option value="">Seattle</option>
             <option name="ballard">Ballard</option>
             <option name="beaconHill">Beacon Hill</option>
             <option name="captialHill">Capitol Hil</option>
@@ -44,6 +39,7 @@ class Rent extends React.Component {
         </FormGroup>
         <Button type="submit">Search Rental Properties!</Button>
       </Form>
+
         </div>
     )
     }
