@@ -1,35 +1,23 @@
-//Require needed packages
-require('dotenv').config()
-let express = require('express')
-let cors = require('cors')
-let morgan = require('morgan')
-let expressJwt = require('express-jwt')
-let rowdyLogger = require('rowdy-logger')
 
-// Instantiate app
-let app = express()
-let rowdyResults = rowdyLogger.begin(app)
+//required packages
+let express = require('express');
+let app = express();
 
-//set-up middleware
-app.use(morgan('dev'))
-app.use(cors())
+//middleware
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json({ limit: '30mb' }))
+app.use(express.json({ limit: '10mb' }))
 
-//Routes
-app.use('/auth', expressJwt({
-    secret: process.env.JWT_SECRET
-}).unless({
-    path: [
-        { url: '/auth/login', methods: ['POST']},
-        { url: '/auth/signup', methods: ['POST']}
-    ]
-}),require('./controllers/auth'))
+//controllers
+app.use('/auth', require('./controllers/auth'))
 
-app.get('*', (req, res) => {
-    res.status(404).send({ message: 'Not Found' })
+//routes
+app.get('*', (req,res) => {
+    res.status(404).send({message: 'Nothing to see here'})
 })
 
-app.listen(process.env.PORT || 3000, () => {
-    rowdyResults.print()
-  })
+
+//listening
+app.listen(process.env.PORT || 3001, () => {
+    console.log('Server started')
+})
+
