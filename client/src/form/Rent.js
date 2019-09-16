@@ -3,8 +3,39 @@ import React from 'react'
 // import { Redirect } from 'react-router-dom'
 import { CustomInput, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Rental from './Rental';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class Rent extends React.Component {
+    // =============== calender stuff
+    state = {
+        startDate: new Date()
+      };
+     
+     handleDates = () => {
+        const [startDate, setStartDate] = useState(new Date("2019/09/18"));
+        const [endDate, setEndDate] = useState(new Date("2019/09/20"));
+        return (
+          <>
+            <DatePicker
+              selected={startDate}
+              onChange={date => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+            />
+            <DatePicker
+              selected={endDate}
+              onChange={date => setEndDate(date)}
+              selectsEnd
+              endDate={endDate}
+              minDate={startDate}
+            />
+          </>
+        );
+      };
+
+     // =============== 
     constructor(props) {
         super(props)
         this.state = {
@@ -32,6 +63,7 @@ class Rent extends React.Component {
     render() {
 
     return (
+
       <div className="page-header clear-filter" filter-color="blue">
         <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
         <div className='Rental-Form'>
@@ -55,6 +87,14 @@ class Rent extends React.Component {
         <Rental current={this.state.currentNeighborhood}/>
         {/* pass data from the state into the rental component */}
         </div>
+
+        {/* // ==================== */}
+        <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange} />
+        {/* // ====================  */}
+
+
         </div>
       
     )

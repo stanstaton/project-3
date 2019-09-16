@@ -47,7 +47,7 @@ class Signup extends React.Component {
                 this.props.updateUser()
             })
             .catch(err => {
-                console.log('ERROR', err.response.data.message)
+                // console.log('ERROR', err.response.data.message)
             })
     }
 

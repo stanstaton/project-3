@@ -20,7 +20,8 @@ let userSchema = new mongoose.Schema({
       minlength: 8,
       maxlength: 32
     },
-    profileUrl: String
+    profileUrl: String,
+    bookedProperties: Array
   })
 
   //use bcrypt to hash password
