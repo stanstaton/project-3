@@ -18,7 +18,7 @@ let propertySchema = new mongoose.Schema({
     },
     dates_unavailable: Array,
     description: String,
-    numberOfGuests: Number
+    maxNumberOfGuests: Number
 
 })
 

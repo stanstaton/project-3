@@ -26,6 +26,7 @@ app.use('/auth',expressJWT({
         {url: '/auth/signup', methods: ['POST']}
     ]
 }), require('./controllers/auth'))
+app.use('/property', require('./controllers/property'))
 
 //routes
 app.get('*', (req,res) => {
