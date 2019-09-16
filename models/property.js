@@ -8,12 +8,18 @@ let propertySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    photos: Array,
+    photos: {
+        type: Array,
+        default: null
+    },
     neighborhood: {
         type: String,
         required: true
     },
-    dates_unavailable: Array
+    dates_unavailable: {
+        type: Array,
+        default: null
+    }
 
 })
 
