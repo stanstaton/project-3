@@ -1,8 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {
+    Button,
+    Collapse,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    NavbarBrand,
+    Navbar,
+    NavItem,
+    NavLink,
+    Nav,
+    Container,
+    UncontrolledTooltip
+  } from "reactstrap";
 
-
-class Nav extends React.Component {
+class Navv extends React.Component {
     handleLogout = (e) => {
         e.preventDefault()
         //Remove the token from local storage (or cookies)
@@ -40,7 +54,7 @@ class Nav extends React.Component {
       }
     return (
         <nav>
-            <ul>
+            {/* <ul> */}
                 <li>
                 <Link to="/">Home</Link>
                 </li>
@@ -48,10 +62,10 @@ class Nav extends React.Component {
                 <Link to="/rent">Rent</Link>
                 </li>
                 {links}
-            </ul>
+            {/* </ul> */}
         </nav>
     );
   }
 }
 
-export default Nav;
+export default Navv;

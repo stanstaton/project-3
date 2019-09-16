@@ -1,4 +1,5 @@
 import React from 'react'
+import {Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
 // import { Col, Row, CustomInput, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
@@ -10,28 +11,21 @@ class Rental extends React.Component {
         this.setState({ showForm: !this.state.showForm })
     } 
     render() {
-        let message = <h3>Message here!</h3>
-        let form = ''
-        if (this.state.showForm) {
-            form = <Rent result={this.state.propertiesName} />
-        }
-
-        if(this.props.propertiesName) {
-            display = (
-            <div className='property-result'>
-            
-            <h3>Search results below</h3>
-            <h2>{this.props.propertiesName}</h2>
-            <button onClick={this.toggleForm}>{this.state.showForm ? 'Cancel' : 'Edit'}</button>
-            {form}
-         </div>
-            )
-        }
 
     return (
-        <div className=''>
-        <h1>Display Rental Properties Below</h1>
-        <h3>{this.state.propertiesName}</h3>
+        <div>
+        <h3>Display Rental Properties Below</h3>
+            <CardGroup>
+            <Card>
+                <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+                <CardBody>
+                <CardTitle>Card title</CardTitle>
+                <CardSubtitle>Card subtitle</CardSubtitle>
+                <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+                <Button>Button</Button>
+            </CardBody>
+            </Card>
+            </CardGroup>
         </div>
     )
     }
