@@ -2,10 +2,13 @@ import axios from 'axios'
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 
+import './assets/css/now-ui-kit.css';
 import './App.css';
 import Content from './content/Content'
 import Nav from './nav/Nav';
-import Header from './nav/Header';
+import IndexNavbar from './nav/IndexNavbar';
+import SignUp from './pages/SignUp';
+// import Header from './nav/Header';
 import SERVER_URL from './constants'
 
 
@@ -45,7 +48,9 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Nav updateUser={this.getUser} user={this.state.user}/>
-          <Header />
+          {/* <IndexNavbar updateUser={this.getUser} user={this.state.user}/>  */}
+          {/* <Header /> */}
+{/* <SignUp/> */}
           <Content updateUser={this.getUser} user={this.state.user}/>
         </div>
       </Router>
