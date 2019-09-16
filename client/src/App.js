@@ -7,7 +7,7 @@ import './App.css';
 import Content from './content/Content'
 import Nav from './nav/Nav';
 import IndexNavbar from './nav/IndexNavbar';
-import SignUp from './pages/SignUp';
+// import SignUp from './pages/SignUp';
 // import Header from './nav/Header';
 import SERVER_URL from './constants'
 
