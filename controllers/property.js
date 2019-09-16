@@ -17,6 +17,21 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/:id', (req,res) => {
+    // res.send('STUB - id route works')
+    db.Property.findOne({_id: req.params.id})
+    .then(property => {
+        if(!property) {
+            return res.status(404).send({message: 'Could not find listed property. Try again later.'})
+        }
+        res.send({property})
+    })
+    .catch(err => {
+        console.log(err)
+        res.send('Error accessing the database')
+    })
+})
+
 router.post('/new', (req,res) => {
     // res.send('STUB - registering a new property')
     db.Property.findOne({address: req.body.address})
