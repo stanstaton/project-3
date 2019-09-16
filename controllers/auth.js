@@ -2,6 +2,7 @@ let router = require('express').Router()
 let db = require('../models')
 require('dotenv').config()
 let jwt = require('jsonwebtoken')
+let expressJWT = require('express-jwt')
 
 router.post('/login', (req,res) => {
     // res.send('STUB - POST/LOGIN')
@@ -17,7 +18,11 @@ router.post('/login', (req,res) => {
             return res.status(406).send({ message: 'Not Acceptable: Invalid Credentials!' })
           }
 
-          res.send('You are logged in')
+          let token = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {
+              expiresIn: 60*60*8 //8 hours in seconds
+          })
+
+          res.send({token})
     })
     .catch(err => {
         console.log(err)
@@ -35,7 +40,10 @@ router.post('/signup', (req,res) => {
 
         db.User.create(req.body)
         .then(newUser => {
-            res.send('Thanks bro')
+            let token = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
+                expiresIn: 60*60*8 //in seconds
+            })
+            res.send({token})
         })
         .catch(err => {
             console.log(err)
@@ -50,7 +58,14 @@ router.post('/signup', (req,res) => {
 })
 
 router.get('/current/user', (req,res) => {
-    res.send('STUB - current user route')
+    console.log(req.user)
+    //the user is logged in, so req.user should have data
+
+    if(!req.user || !req.user._id) {
+        res.status(401).send({message: 'Check configuration'})
+    }
+
+    res.send({user: req.user})
 })
 
 

@@ -17,7 +17,7 @@ import React from "react";
 // reactstrap components
 import { Container } from "reactstrap";
 import Signup from "./Signup";
-import SignUp from "./SignUp";
+// import SignUp from "./SignUp";
 
 // core components
 
