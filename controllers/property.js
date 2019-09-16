@@ -6,7 +6,15 @@ let expressJWT = require('express-jwt')
 
 
 router.get('/', (req,res) => {
-    res.send('You made it')
+    // res.send('You made it')
+    db.Property.find()
+    .then(properties => {
+        res.send({properties})
+    })
+    .catch(err => {
+        console.log(err)
+        res.send('Database issue')
+    })
 })
 
 router.post('/new', (req,res) => {
