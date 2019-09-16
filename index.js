@@ -2,6 +2,8 @@
 //required packages
 let express = require('express');
 let app = express();
+let rowdyLogger = require('rowdy-logger')
+let rowdyResults = rowdyLogger.begin(app)
 
 //middleware
 app.use(express.urlencoded({ extended: false }))
@@ -17,7 +19,8 @@ app.get('*', (req,res) => {
 
 
 //listening
-app.listen(process.env.PORT || 3001, () => {
+app.listen(process.env.PORT || 3002, () => {
     console.log('Server started')
+    rowdyResults.print()
 })
 

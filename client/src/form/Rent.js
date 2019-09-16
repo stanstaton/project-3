@@ -30,34 +30,29 @@ class Rent extends React.Component {
         console.log(e.target.value)
     }
     render() {
-        let neighborhood = this.state.currentNeighborhood
-    return (
 
+    return (
       <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}
-          // ref={pageHeader}
-        ></div>
+        <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
         <div className='Rental-Form'>
         <h1>Rental Content</h1>
         <Form onChange={this.handleRentalSubmit}>
-        <FormGroup>
-          <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
-          <br></br><br></br>
-          <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
-            <option value="">Seattle</option>
-            <option value="Ballard">Ballard</option>
-            <option value="Beacon Hill">Beacon Hill</option>
-            <option value="Capitol Hill">Capitol Hill</option>
-            <option value="Queen Anne">Queen Anne</option>
-            <option value="Rainier Valley">Rainier Valley</option>
-            <option value="University District">University District</option>
-          </CustomInput>
-        </FormGroup>
-        <Button type="submit">Search Rental Properties!</Button>
-      </Form>
-        {/* <Rental current={this.state.currentNeighborhood}/> */}
+            <FormGroup>
+            <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
+            <br />
+            <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
+                <option value="">Seattle</option>
+                <option value="Ballard">Ballard</option>
+                <option value="Beacon Hill">Beacon Hill</option>
+                <option value="Capitol Hill">Capitol Hill</option>
+                <option value="Queen Anne">Queen Anne</option>
+                <option value="Rainier Valley">Rainier Valley</option>
+                <option value="University District">University District</option>
+            </CustomInput>
+            </FormGroup>
+            <Button type="submit">Search Rental Properties!</Button>
+        </Form>
+        <Rental current={this.state.currentNeighborhood}/>
         {/* pass data from the state into the rental component */}
         </div>
         </div>
