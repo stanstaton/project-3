@@ -16,10 +16,9 @@ let propertySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dates_unavailable: {
-        type: Array,
-        default: null
-    }
+    dates_unavailable: Array,
+    description: String,
+    numberOfGuests: Number
 
 })
 

@@ -1,10 +1,11 @@
 //required packages
 let cors = require('cors')
 let express = require('express');
-let expressJWT = require('jsonwebtoken')
+let jwt = require('jsonwebtoken')
 let morgan = require('morgan')
 let rowdyLogger = require('rowdy-logger')
 require('dotenv').config()
+let expressJWT = require('express-jwt')
 
 //initiate app
 let app = express();
@@ -22,7 +23,7 @@ app.use('/auth',expressJWT({
 }).unless({
     path: [
         {url: '/auth/login', methods: ['POST']},
-        {url: 'auth/signup', methods: ['POST']}
+        {url: '/auth/signup', methods: ['POST']}
     ]
 }), require('./controllers/auth'))
 
