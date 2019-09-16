@@ -6,7 +6,30 @@ let expressJWT = require('express-jwt')
 
 
 router.get('/', (req,res) => {
-    res.send('You made it')
+    // res.send('You made it')
+    db.Property.find()
+    .then(properties => {
+        res.send({properties})
+    })
+    .catch(err => {
+        console.log(err)
+        res.send('Database issue')
+    })
+})
+
+router.get('/:id', (req,res) => {
+    // res.send('STUB - id route works')
+    db.Property.findOne({_id: req.params.id})
+    .then(property => {
+        if(!property) {
+            return res.status(404).send({message: 'Could not find listed property. Try again later.'})
+        }
+        res.send({property})
+    })
+    .catch(err => {
+        console.log(err)
+        res.send('Error accessing the database')
+    })
 })
 
 router.post('/new', (req,res) => {
