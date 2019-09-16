@@ -34,12 +34,21 @@ class Rent extends React.Component {
     }
     render() {
     return (
-        <div className='Rental Form'>
+      <div className="page-header clear-filter" filter-color="blue">
+        <div
+          className="page-header-image"
+          style={{
+            backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")"
+          }}
+          // ref={pageHeader}
+        ></div>
+        <div className='Rental-Form'>
         <h1>Rental Content</h1>
         <Form onSubmit={this.handleRentalSubmit}>
         <FormGroup>
-          <Label for="exampleCustomSelect">Select Neighborhood</Label>
-          <CustomInput onChange={this.handleSelector} type="select" id="exampleCustomSelect" >
+          <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
+          <br></br><br></br>
+          <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
             <option value="">Seattle</option>
             <option value="ballard">Ballard</option>
             <option value="beaconHill">Beacon Hill</option>
@@ -54,6 +63,7 @@ class Rent extends React.Component {
         <Rental current={this.state.currentNeighborhood}/>
         {/* pass data from the state into the rental component */}
   
+        </div>
         </div>
     )
     }
