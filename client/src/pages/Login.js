@@ -43,10 +43,7 @@ class Login extends React.Component {
         return (
             
            
-            <div className="page-header clear-filter" style={{
-                backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")"
-                
-              }}>
+            <div className="page-header clear-filter" >
                 <h1 className="Rental-Form">Login Content</h1>
                 <span className="red">{this.state.message}</span>
                 {/* <form onSubmit={this.handleSubmit}>

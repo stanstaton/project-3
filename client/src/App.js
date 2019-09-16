@@ -47,11 +47,20 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
+         <div className="page-header clear-filter" filter-color="blue">
+        <div
+          className="page-header-image"
+          style={{
+            backgroundImage: "url(" + require("./assets/img/seattle.jpg") + ")"
+          }}
+          // ref={pageHeader}
+        ></div> 
           <Nav updateUser={this.getUser} user={this.state.user}/>
           {/* <IndexNavbar updateUser={this.getUser} user={this.state.user}/>  */}
           {/* <Header /> */}
 {/* <SignUp/> */}
           <Content updateUser={this.getUser} user={this.state.user}/>
+        </div>
         </div>
       </Router>
     );

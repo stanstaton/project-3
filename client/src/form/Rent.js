@@ -34,14 +34,7 @@ class Rent extends React.Component {
     }
     render() {
     return (
-      <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")"
-          }}
-          // ref={pageHeader}
-        ></div>
+    
         <div className='Rental-Form'>
         <h1>Rental Content</h1>
         <Form onSubmit={this.handleRentalSubmit}>
@@ -64,7 +57,7 @@ class Rent extends React.Component {
         {/* pass data from the state into the rental component */}
   
         </div>
-        </div>
+      
     )
     }
 }

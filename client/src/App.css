@@ -67,6 +67,7 @@ nav a:hover {
 
 .Rental-Form{
 padding-top: 10%;
+margin-top: -100px;
 }
 
 .Rental-Content{
@@ -99,6 +100,7 @@ padding-top: 10%;
 
 .n-logo{
   padding-top: 150%;
+  margin-top: -200px;
 }
 
 .form-group {

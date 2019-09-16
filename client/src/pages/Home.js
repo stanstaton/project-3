@@ -41,14 +41,14 @@ function IndexHeader() {
 
   return (
     <>
-      <div className="page-header clear-filter" filter-color="blue">
+      {/* <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
           style={{
             backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")"
           }}
           ref={pageHeader}
-        ></div>
+        ></div> */}
         <Container>
           <div className="content-center brand">
             <img
@@ -66,7 +66,7 @@ function IndexHeader() {
  
           </h6>
         </Container>
-      </div>
+      {/* </div> */}
     </>
   );
 }
