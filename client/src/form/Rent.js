@@ -32,6 +32,7 @@ class Rent extends React.Component {
     render() {
         let neighborhood = this.state.currentNeighborhood
     return (
+
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -58,9 +59,9 @@ class Rent extends React.Component {
       </Form>
         {/* <Rental current={this.state.currentNeighborhood}/> */}
         {/* pass data from the state into the rental component */}
-  
         </div>
         </div>
+      
     )
     }
 }
