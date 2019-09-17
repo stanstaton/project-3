@@ -36,19 +36,18 @@ class Rent extends React.Component {
         return endDate.diff(startDate, "days");
     }
     dateRange = () => {
-        // let currentDate = startDate;
         let dates_unavailable = []
-        let momentStartDate =  moment(this.state.startDate).format('MM/D/YYYY')
-        let momentEndDate =  moment(this.state.endDate).format('MM/D/YYYY')
-        console.log('start', momentStartDate)
-        console.log('end', momentEndDate)
-        // while(momentStartDate!== momentEndDate) {
-        //     console.log(momentStartDate.toDate());
-        //     dates_unavailable.push(momentStartDate.toDate());
-        //     momentStartDate = momentStartDate.add(1, 'days');
-        // }
-        console.log('start Date', dates_unavailable)
-        console.log('this is working')
+        let startDate =  this.state.startDate
+        let endDate =  this.state.endDate
+        console.log('start', startDate)
+        console.log('end', endDate)
+        while (startDate <= endDate) {
+            dates_unavailable.push(new Date(startDate));
+
+            startDate.setDate(startDate.getDate() + 1);
+        }
+        console.log(dates_unavailable)
+        return dates_unavailable;
     }
 
     handleNeighborhoodChange = (e) => {
@@ -107,24 +106,6 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
-
-        <Form onSubmit={this.handleRentalSubmit}>
-        <FormGroup>
-          <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
-          <br></br><br></br>
-          <CustomInput type="select" id="exampleCustomSelect" name="customSelect" onSelect={this.handleSelector}>
-            <option value="">Seattle</option>
-            <option value="ballard">Ballard</option>
-            <option value="beaconHill">Beacon Hill</option>
-            <option value="captialHill">Capitol Hil</option>
-            <option value="queenAnne">Queen Anne</option>
-            <option value="rainerValley">Rainier Valley</option>
-            <option value="universityDistrict">University District</option>
-          </CustomInput>
-        </FormGroup>
-        <Button type="submit">Search Rental Properties!</Button>
-      </Form>
-
         <Rental current={this.state.currentNeighborhood}/>
         </div>
         </div>
