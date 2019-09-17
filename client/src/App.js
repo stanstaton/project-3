@@ -6,6 +6,8 @@ import './assets/css/now-ui-kit.css';
 import './App.css';
 import Content from './content/Content'
 import Nav from './nav/Nav';
+import Footer from './footer/DarkFooter'
+import Host from './pages/Host'
 import IndexNavbar from './nav/IndexNavbar';
 import Signup from './pages/Signup';
 // import Header from './nav/Header';
@@ -56,9 +58,8 @@ class App extends React.Component {
           // ref={pageHeader}
         ></div> 
           <Nav updateUser={this.getUser} user={this.state.user}/>
-          {/* <IndexNavbar updateUser={this.getUser} user={this.state.user}/>  */}
-          {/* <Header /> */}
-{/* <SignUp/> */}
+          
+          <Footer/>
           <Content updateUser={this.getUser} user={this.state.user}/>
         </div>
         </div>

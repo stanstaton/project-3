@@ -28,6 +28,7 @@ app.use('/auth',expressJWT({
 }), require('./controllers/auth'))
 app.use('/property', require('./controllers/property'))
 
+
 //routes
 app.get('*', (req,res) => {
     res.status(404).send({message: 'Nothing to see here'})

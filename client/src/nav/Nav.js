@@ -32,6 +32,9 @@ class Navv extends React.Component {
         links = (
             <span>
             <li>
+                <Link to="/host">Host</Link>
+            </li>
+            <li>
                 <Link to="/profile">Profile</Link>
             </li>
             <li>
