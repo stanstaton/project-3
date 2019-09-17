@@ -23,7 +23,7 @@ const Content = props => {
             } />
             <Route exact path="/rent" component={Search} />
             <Route exact path="/profile" render={
-               () => <Profile user={props.user} /> 
+               () => <Profile updateProfile={props.updateProfile} user={props.user} /> 
             } />
             <Route exact path="/login" render={
              () => <Login user={props.user} updateUser={props.updateUser} />

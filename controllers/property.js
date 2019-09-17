@@ -56,5 +56,16 @@ router.post('/new', (req,res) => {
 
 })
 
+router.put('/:id', (req,res) => {
+    db.Property.findOneAndUpdate({_id: req.params.id}, req.body.id, {new: true})
+    .then(editedProperty => {
+        res.send(editedProperty)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(404).send({message: 'Error accessing the database'})
+    })
+})
+
 
 module.exports = router;
