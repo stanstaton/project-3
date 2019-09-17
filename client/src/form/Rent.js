@@ -41,7 +41,7 @@ class Rent extends React.Component {
         <FormGroup>
           <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
           <br></br><br></br>
-          <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
+          <CustomInput type="select" id="exampleCustomSelect" name="customSelect" onSelect={this.handleSelector}>
             <option value="">Seattle</option>
             <option value="ballard">Ballard</option>
             <option value="beaconHill">Beacon Hill</option>
