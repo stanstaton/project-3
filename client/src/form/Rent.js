@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 // import axios from 'axios'
 // import { Redirect } from 'react-router-dom'
-import moment from "moment";
+import moment from 'moment';
+import axios from 'axios'
 import { Button, CustomInput, Form, FormGroup, Label} from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
@@ -12,14 +13,16 @@ class Rent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentNeighborhood: '',
+            neighborhood: 'Seattle',
             propertiesName: 'Property Name',
             image: 'https://placebear.com/200/300',
             unAvailable: false,
             startDate: new Date("09/17/2019"),
-            endDate: new Date("09/17/2019"),
+            endDate: new Date("09/18/2019"),
             days: 0,  
-            datesBooked: []
+            dates_unavailable: [],
+            resultsObj: [],
+            maxNumberOfGuests: 0
         }
     }
     handleChangeStart = (date) => {
@@ -31,7 +34,7 @@ class Rent extends React.Component {
     daysLeft(startDate, endDate) {
         if (!moment.isMoment(startDate)) startDate = moment(startDate);
         if (!moment.isMoment(endDate)) endDate = moment(endDate);
-        if (startDate.isAfter(endDate)) throw new Error('Start date must precede end date!')
+        // if (startDate.isAfter(endDate)) throw new Error('Start date must precede end date!')
     
         return endDate.diff(startDate, "days");
     }
@@ -47,17 +50,29 @@ class Rent extends React.Component {
             startDate.setDate(startDate.getDate() + 1);
         }
         console.log(dates_unavailable)
+        this.setState({dates_unavailable: dates_unavailable})
         return dates_unavailable;
     }
 
     handleNeighborhoodChange = (e) => {
         e.preventDefault()
-        this.setState({ currentNeighborhood: e.target.value})
+        this.setState({ neighborhood: e.target.value})
         console.log('submitted!', e.target.value)
     }
     handleSubmit = (e) => {
         e.preventDefault()
         this.dateRange()
+        console.log(this.state)
+        axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte": ${this.state.maxNumberOfGuests}}`)
+        .then(response => {
+            console.log(response)
+            this.setState({resultsObj: response.data.properties})
+        })
+    }
+
+    handleChange = e => {
+      this.setState({maxNumberOfGuests: e.target.value})
+      console.log(this.state.maxNumberOfGuests)
     }
 
     render() {
@@ -75,8 +90,8 @@ class Rent extends React.Component {
             <FormGroup>
             <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
             <br />
-            <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="customSelect">
-                <option value="">Seattle</option>
+            <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
+                <option value="Seattle">Seattle</option>
                 <option value="Ballard">Ballard</option>
                 <option value="Beacon Hill">Beacon Hill</option>
                 <option value="Capitol Hill">Capitol Hill</option>
@@ -84,6 +99,10 @@ class Rent extends React.Component {
                 <option value="Rainier Valley">Rainier Valley</option>
                 <option value="University District">University District</option>
             </CustomInput>
+            </FormGroup>
+            <FormGroup>
+              <label>Number of Guests</label>
+              <input name="maxNumberOfGuests" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
                 <label>Select Start Date: </label>
