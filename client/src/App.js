@@ -9,8 +9,10 @@ import Nav from './nav/Nav';
 import Footer from './footer/DarkFooter'
 import Host from './pages/Host'
 import IndexNavbar from './nav/IndexNavbar';
+
+
 import Signup from './pages/Signup';
-// import Header from './nav/Header';
+
 import SERVER_URL from './constants'
 
 

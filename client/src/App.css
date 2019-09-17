@@ -107,6 +107,7 @@ margin-top: -100px;
   z-index: 1;
 }
 
+
 .footer {
   padding: 0px;
   margin: 0px;
@@ -121,4 +122,10 @@ margin-top: -100px;
 
 .copyright {
   margin-top: 20px;
+
+.rental-result {
+  border: 2px solid lawngreen;
+  max-width: 90rem;
+  height: 400px;
+  display: inline-block;
 }

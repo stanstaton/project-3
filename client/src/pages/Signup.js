@@ -2,21 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import SERVER_URL from '.././constants'
-import {
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    CardTitle,
-    Form,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
-    Container,
-    Row
-} from "reactstrap";
+import { Button, Card, CardBody, CardFooter, Input, InputGroup, Container, Row } from "reactstrap";
 
 
 class Signup extends React.Component {

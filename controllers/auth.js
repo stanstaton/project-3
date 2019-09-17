@@ -68,7 +68,4 @@ router.get('/current/user', (req,res) => {
     res.send({user: req.user})
 })
 
-
-
-
 module.exports = router;

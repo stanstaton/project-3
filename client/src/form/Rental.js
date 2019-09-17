@@ -1,7 +1,4 @@
 import React from 'react'
-import {Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody } from 'reactstrap';
-// import { Col, Row, CustomInput, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
 
 class Rental extends React.Component {
     state ={
@@ -14,18 +11,13 @@ class Rental extends React.Component {
 
     return (
         <div>
-        <h3>Display Rental Properties Below</h3>
-            <CardGroup>
-            <Card>
-                <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-                <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-                <Button>Button</Button>
-            </CardBody>
-            </Card>
-            </CardGroup>
+            
+            <div className="rental-result">
+           <h2>{this.props.current}</h2>
+                
+                
+                
+            </div>
         </div>
     )
     }
