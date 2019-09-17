@@ -7,7 +7,7 @@ let expressJWT = require('express-jwt')
 
 router.get('/', (req,res) => {
     // res.send('You made it')
-    db.Property.find()
+    db.Property.find({where: req.query})
     .then(properties => {
         res.send({properties})
     })

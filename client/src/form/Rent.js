@@ -71,6 +71,7 @@ class Rent extends React.Component {
         <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
         <div className='Rental-Form'>
         <h1>Rental Content</h1>
+
         <Form onSubmit={this.handleSubmit}>
             <FormGroup>
             <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
@@ -106,6 +107,24 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
+
+        <Form onSubmit={this.handleRentalSubmit}>
+        <FormGroup>
+          <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
+          <br></br><br></br>
+          <CustomInput type="select" id="exampleCustomSelect" name="customSelect" onSelect={this.handleSelector}>
+            <option value="">Seattle</option>
+            <option value="ballard">Ballard</option>
+            <option value="beaconHill">Beacon Hill</option>
+            <option value="captialHill">Capitol Hil</option>
+            <option value="queenAnne">Queen Anne</option>
+            <option value="rainerValley">Rainier Valley</option>
+            <option value="universityDistrict">University District</option>
+          </CustomInput>
+        </FormGroup>
+        <Button type="submit">Search Rental Properties!</Button>
+      </Form>
+
         <Rental current={this.state.currentNeighborhood}/>
         </div>
         </div>
