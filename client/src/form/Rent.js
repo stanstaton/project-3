@@ -88,7 +88,7 @@ class Rent extends React.Component {
             </FormGroup>
             <FormGroup>
                 <label>Select Start Date: </label>
-                <DatePicker
+                <DatePicker className="btn-round" color="info"
                     selected={this.state.startDate}
                     onChange={date => this.handleChangeStart(date)}
                     selectsStart
@@ -96,7 +96,7 @@ class Rent extends React.Component {
                     endDate={this.state.endDate}
                 />
                 <label>Select End Date:</label>
-                <DatePicker
+                <DatePicker className="btn-round" color="info"
                     selected={this.state.endDate}
                     onChange={date => this.handleChangeEnd(date)}
                     selectsEnd
@@ -108,23 +108,7 @@ class Rent extends React.Component {
             <Button type="submit">Search!</Button>
         </Form>
 
-        <Form onSubmit={this.handleRentalSubmit}>
-        <FormGroup>
-          <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
-          <br></br><br></br>
-          <CustomInput type="select" id="exampleCustomSelect" name="customSelect" onSelect={this.handleSelector}>
-            <option value="">Seattle</option>
-            <option value="ballard">Ballard</option>
-            <option value="beaconHill">Beacon Hill</option>
-            <option value="captialHill">Capitol Hil</option>
-            <option value="queenAnne">Queen Anne</option>
-            <option value="rainerValley">Rainier Valley</option>
-            <option value="universityDistrict">University District</option>
-          </CustomInput>
-        </FormGroup>
-        <Button type="submit">Search Rental Properties!</Button>
-      </Form>
-
+        
         <Rental current={this.state.currentNeighborhood}/>
         </div>
         </div>
