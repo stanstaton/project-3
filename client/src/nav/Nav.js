@@ -1,20 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Button,
-    Collapse,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    NavLink,
-    Nav,
-    Container,
-    UncontrolledTooltip
-  } from "reactstrap";
+
 
 class Navv extends React.Component {
     handleLogout = (e) => {
