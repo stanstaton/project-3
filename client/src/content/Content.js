@@ -7,12 +7,20 @@ import Profile from '../pages/Profile'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import Rent from '../form/Rent'
+
+import Host from '../pages/Host'
 import Search from '../pages/Search'
+
 
 const Content = props => {
     return (
         <div className="container">
             <Route exact path="/" component={Home} />
+
+            <Route exact path="/rent" component={Rent} />
+            <Route exact path="/host" render={
+               () => <Host user={props.user} /> 
+            } />
             <Route exact path="/rent" component={Search} />
             <Route exact path="/profile" render={
                () => <Profile user={props.user} /> 

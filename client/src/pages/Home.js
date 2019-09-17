@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Container } from "reactstrap";
 import Signup from "./Signup";
 
+
 class IndexHeader extends React.Component {
   render() {
     if (this.props.user) {

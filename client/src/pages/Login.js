@@ -59,8 +59,9 @@ class Login extends React.Component {
                     </div>
                         <button type="submit">Log Me In!</button>
                 </form> */}
-      
+
                 <form onSubmit={this.handleSubmit} >
+
   <div class="form-group">
     <label for="exampleInputEmail1"></label>
     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"

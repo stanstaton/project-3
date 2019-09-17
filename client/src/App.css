@@ -107,6 +107,22 @@ margin-top: -100px;
   z-index: 1;
 }
 
+
+.footer {
+  padding: 0px;
+  margin: 0px;
+  text-align: justify;
+  /* height: 3vh; */
+}
+
+.AboutBlog {
+  margin-top: -40px;
+  padding-bottom: 15px
+}
+
+.copyright {
+  margin-top: 20px;
+
 .rental-result {
   border: 2px solid lawngreen;
   max-width: 90rem;
