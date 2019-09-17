@@ -100,7 +100,6 @@ margin-top: -100px;
 
 .n-logo{
   padding-top: 150%;
-  margin-top: -200px;
 }
 
 .form-group {
@@ -125,8 +124,40 @@ margin-top: -100px;
 }
 
 .rental-result {
-  border: 2px solid lawngreen;
+  /* border: 2px solid lawngreen; */
   max-width: 90rem;
   height: 400px;
   display: inline-block;
+}
+
+#exampleCustomSelect {
+  position: relative;
+  font-family: Arial;
+  background-color: rgb(133, 131, 131);
+  border: none;
+  /* border-radius: 5% */
+  height: 3vh;
+  width: 10vw;
+  color: white;
+}
+
+
+.btn-round {
+  font-size: 12pt;
+}
+
+#rentForm{
+  margin-top: -100px;
+}
+
+#hostContainer {
+  margin-top: 150px;
+}
+
+#addPhotoInput {
+  background-image: transparent;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  /* border: none; */
 }

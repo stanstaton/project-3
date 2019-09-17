@@ -7,11 +7,7 @@ import './App.css';
 import Content from './content/Content'
 import Nav from './nav/Nav';
 import Footer from './footer/DarkFooter'
-import Host from './pages/Host'
-import IndexNavbar from './nav/IndexNavbar';
 
-
-import Signup from './pages/Signup';
 
 import SERVER_URL from './constants'
 
@@ -52,6 +48,7 @@ class App extends React.Component {
       <Router>
         <div className="App">
          <div className="page-header clear-filter" filter-color="blue">
+           
         <div
           className="page-header-image"
           style={{

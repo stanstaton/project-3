@@ -25,7 +25,9 @@ class Host extends React.Component {
         city: '',
         State: '',
         neighborhood: '',
-        photo: ''
+        description: '',
+        photo: '',
+        inputs: []
     }
 
     storeInput = (e) => {
@@ -33,22 +35,22 @@ class Host extends React.Component {
     }
 
     addInput = (e) => {
-        var button = document.createElement('button');
-        button.innerHTML = 'click me';
-        button.onclick = function(){
-          alert('here be dragons');return false;
-        };
-        // where do we want to have the button to appear?
-        // you can append it to another element just by doing something like
-        // document.getElementById('foobutton').appendChild(button);
-        document.body.appendChild(button);
+        e.preventDefault()
+        let inputsCopy = [...this.state.inputs, this.state.photo]
+        this.setState({ 
+            inputs: inputsCopy,
+            photo: ''
+        })
     }
 
     handleSubmit = (e) => {
+        let token = localStorage.getItem('mernToken')
         e.preventDefault()
         console.log('form was submitted', this.state, SERVER_URL)
         //send the user sig up data to the server
-        axios.post(`${SERVER_URL}/auth/property`, this.state)
+        axios.post(`${SERVER_URL}/auth/property`, this.state, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          })
             .then(response => {
                 console.log('SUCCESS', response)
 
@@ -69,8 +71,11 @@ class Host extends React.Component {
         // if (this.props.user) {
         //     return <Redirect to="/host" />
         // }
+        let inputsDisplay = this.state.inputs.map((propPic, idx) => {
+            return <div key={idx}> {propPic} </div>
+        })  
         return (
-            <Container>
+            <Container id="hostContainer">
           <Row>
             <Card className="sign-up-form1" data-background-color="blue">
                 <h2>Host a property </h2>
@@ -101,27 +106,34 @@ class Host extends React.Component {
                         </InputGroup>
                     </div>
                     <div>
-                        {/* <label>Profile Image:</label> */}
+                        {/* <label>Password:</label> */}
                         <InputGroup>
-                        <Input name="photo" placeholder="Your proptery photo" onChange={this.storeInput}/>
+                        <Input name="description" placeholder="Description" onChange={this.storeInput}/>
                         </InputGroup>
                     </div>
-                    <div><button onclick="addInput()">Add More</button></div>
-                    </CardBody> 
-                    <CardFooter className="text-center">
-                        <Button className="btn-round btn-white"
-                        color="white"
-                        to="/Home"
-                        outline
-                        size="lg" 
-                        type="submit">Sign Me Up!</Button>
-                   </CardFooter>
+                    <div>
+                        {/* <label>Profile Image:</label> */}
+                        <InputGroup>
+                        <Input name="photo" typ="url" placeholder="Your proptery photo" onChange={this.storeInput} value={this.state.photo}/>
+                        </InputGroup>
+                    </div>
+                    <div><button id="addPhotoInput" onClick={this.addInput}>+</button></div>
+                    {inputsDisplay}
+                </CardBody> 
+                <CardFooter className="text-center">
+                    <Button className="btn-round btn-white"
+                    color="white"
+                    to="/Home"
+                    outline
+                    size="lg" 
+                    type="submit">Sign Me Up!</Button>
+                </CardFooter>
 
-                </form>
+            </form>
                {/* <div> { this.SignUp }</div> */}
-            </Card>
-            </Row>
-            </Container>
+        </Card>
+        </Row>
+        </Container>
                 )
             }
         }
