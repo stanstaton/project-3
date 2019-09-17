@@ -29,6 +29,23 @@ const Profile = props => {
     return (
         <div>
             <h2>{props.user.firstname}'s Profile</h2>
+            <img src={props.user.profileUrl} />
+            <h3>Update Profile</h3>
+            <form onSubmit={props.updateProfile}>
+                <input name="firstname" value={props.user.firstname} />
+                <br />
+                <input name="lastname" value={props.user.lastname} />
+                <br />
+                <input name="email" value={props.user.email} />
+                <br />
+                <input name="profileUrl" value={props.user.profileUrl} />
+                <input type="submit" />
+            </form>
+
+            <hr />
+            <h2>Upcoming Bookings</h2>
+            <hr />
+            <h2>Past Bookings:</h2>
         </div>
     )
 }

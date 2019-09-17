@@ -23,6 +23,12 @@ class App extends React.Component {
     this.getUser()
   }
 
+  updateProfile = (e) => {
+    e.preventDefault()
+    console.log('Submitted')
+  }
+
+
   getUser = () => {
     //See if there is a token
     let token = localStorage.getItem('mernToken')
@@ -45,6 +51,7 @@ class App extends React.Component {
       this.setState({ user: null})
     }
   }
+  
   render() {
     return (
       <Router>
@@ -60,7 +67,7 @@ class App extends React.Component {
           <Nav updateUser={this.getUser} user={this.state.user}/>
           
           <Footer/>
-          <Content updateUser={this.getUser} user={this.state.user}/>
+          <Content updateProfile={this.updateProfile} updateUser={this.getUser} user={this.state.user}/>
         </div>
         </div>
       </Router>

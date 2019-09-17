@@ -1,3 +1,4 @@
+
 import React from 'react';
 import moment from "moment";
 import { Button, CustomInput, Form, FormGroup, Label} from 'reactstrap';
@@ -11,7 +12,7 @@ class Rent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentNeighborhood: '',
+            neighborhood: 'Seattle',
             propertiesName: 'Property Name',
             image: 'https://placebear.com/200/300',
             unAvailable: false,
@@ -20,7 +21,7 @@ class Rent extends React.Component {
             days: 0,  
             dates_unavailable: [],
             maxNumberOfGuests: 0,
-            neighborhood: 'Ballard',
+            // neighborhood: 'Ballard',
             resultsObj: []
         }
     }
@@ -35,6 +36,7 @@ class Rent extends React.Component {
         if (!moment.isMoment(endDate)) endDate = moment(endDate);
         if (startDate.isAfter(endDate)) {
             console.log('Start date must precede end date!')}
+
     
         return endDate.diff(startDate, "days");
     }
@@ -52,6 +54,7 @@ class Rent extends React.Component {
             console.log('Line 52-end', endDate)
         }
         console.log(dates_unavailable)
+        this.setState({dates_unavailable: dates_unavailable})
         return dates_unavailable;
     }
     showState = () => {
@@ -59,7 +62,7 @@ class Rent extends React.Component {
     }
     handleNeighborhoodChange = (e) => {
         e.preventDefault()
-        this.setState({ currentNeighborhood: e.target.value})
+        this.setState({ neighborhood: e.target.value})
         console.log('submitted!', e.target.value)
     }
     handleSubmit = (e) => {
@@ -67,13 +70,20 @@ class Rent extends React.Component {
         this.dateRange()
         console.log('Submitted', this.state)
         this.showState()
-    
         console.log(SERVER_URL)
+        console.log(this.state)
         axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte": ${this.state.maxNumberOfGuests}}`)
         .then(response => {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
         })
+
+    }
+
+    handleChange = e => {
+      this.setState({maxNumberOfGuests: e.target.value})
+      console.log(this.state.maxNumberOfGuests)
+
     }
 
     handleChange = e => {
@@ -102,8 +112,8 @@ class Rent extends React.Component {
             <FormGroup>
             <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
             <br />
-            <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="customSelect">
-                <option value="">Seattle</option>
+            <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
+                <option value="Seattle">Seattle</option>
                 <option value="Ballard">Ballard</option>
                 <option value="Beacon Hill">Beacon Hill</option>
                 <option value="Capitol Hill">Capitol Hill</option>
@@ -113,11 +123,11 @@ class Rent extends React.Component {
             </CustomInput>
             </FormGroup>
             <FormGroup>
-                <label>Guests:</label>
-            <input onChange={this.handleChange} name="maxNumberOfGuests" placeholder="Number of guests?" />
+              <label>Number of Guests</label>
+              <input name="maxNumberOfGuests" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
-                <label>Start Date: </label>
+                <label>Select Start Date: </label>
                 <DatePicker
                     selected={this.state.startDate}
                     onChange={date => this.handleChangeStart(date)}
