@@ -11,8 +11,13 @@ class Rental extends React.Component {
 
     return (
         <div>
-        <h3>Display Search Results Below</h3>
-        <h4>{this.current}</h4>
+            
+            <div className="rental-result">
+           <h2>{this.props.current}</h2>
+                
+                
+                
+            </div>
         </div>
     )
     }
