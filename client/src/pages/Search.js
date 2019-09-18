@@ -12,21 +12,22 @@ class Search extends React.Component {
         resultsObj: []
     }
 
-    showState = () => {
-        console.log(this.state)
-    }
-
     handleSubmit = e => {
         e.preventDefault()
         console.log(e.target.neighborhood.value)
         // this.setState({neighborhood: e.target.neighborhood.value})
         console.log('Submitted', this.state)
-        this.showState()
+        
         let passedData = JSON.stringify(this.state)
 
         console.log(SERVER_URL)
 
-        axios.get(`http://localhost:3001/property`)
+        axios.get(`http://localhost:3001/property`, {
+            params: {
+                maxNumberOfGuests: this.state.maxNumberOfGuests,
+                neighborhood: this.state.neighborhood
+            }
+        })
         .then(response => {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
