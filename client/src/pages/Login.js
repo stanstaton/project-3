@@ -62,27 +62,27 @@ class Login extends React.Component {
 
                 <form onSubmit={this.handleSubmit} >
 
-  <div class="form-group">
-    <label for="exampleInputEmail1"></label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+  <div className="form-group">
+    <label htmlFor="exampleInputEmail1"></label>
+    <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
     onChange={(e) => this.setState({ email: e.target.value})}/>
-    <small id="emailHelp" class="form-text text-muted"></small>
+    <small id="emailHelp" className="form-text text-muted"></small>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1"></label>
-    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+  <div className="form-group">
+    <label htmlFor="exampleInputPassword1"></label>
+    <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
     onChange={(e) => this.setState({ password: e.target.value})}/>
   </div>
 
-  <div class="form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox"/>
-      <span class="form-check-sign"></span>
+  <div className="form-check">
+    <label className="form-check-label">
+      <input className="form-check-input" type="checkbox"/>
+      <span className="form-check-sign"></span>
       Remember Me
     </label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <button type="submit" className="btn btn-primary">Submit</button>
+    </form>
             </div>
             </div>
         )
