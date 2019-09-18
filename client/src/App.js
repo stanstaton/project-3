@@ -8,7 +8,6 @@ import Content from './content/Content'
 import Nav from './nav/Nav';
 import Footer from './footer/DarkFooter'
 
-
 import SERVER_URL from './constants'
 
 
@@ -20,6 +19,12 @@ class App extends React.Component {
     //Go look for a token
     this.getUser()
   }
+
+  updateProfile = (e) => {
+    e.preventDefault()
+    console.log('Submitted')
+  }
+
 
   getUser = () => {
     //See if there is a token
@@ -43,6 +48,7 @@ class App extends React.Component {
       this.setState({ user: null})
     }
   }
+  
   render() {
     return (
       <Router>
@@ -59,7 +65,7 @@ class App extends React.Component {
           <Nav updateUser={this.getUser} user={this.state.user}/>
           
           <Footer/>
-          <Content updateUser={this.getUser} user={this.state.user}/>
+          <Content updateProfile={this.updateProfile} updateUser={this.getUser} user={this.state.user}/>
         </div>
         </div>
       </Router>
