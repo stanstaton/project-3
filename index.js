@@ -24,7 +24,7 @@ app.use('/auth',expressJWT({
     path: [
         {url: '/auth/login', methods: ['POST']},
         {url: '/auth/signup', methods: ['POST']},
-        {url: '/auth/current/user', methods: ['POST']}
+        {url: '/auth/current/user', methods: ['PUT']}
     ]
 }), require('./controllers/auth'))
 app.use('/property', require('./controllers/property'))

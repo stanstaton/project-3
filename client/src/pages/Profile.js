@@ -34,11 +34,11 @@ class Profile extends React.Component {
         let token = localStorage.getItem('mernToken')
         console.log('user form was submitted', this.state, SERVER_URL)
         //send the user sig up data to the server
-        axios.post(`${SERVER_URL}/auth/current/user`, {
+        axios.put(`${SERVER_URL}/auth/${this.props.user._id}`, this.state, {
             headers: { 'Authorization': `Bearer ${token}` }
           })
             .then(response => {
-                console.log('SUCCESS')
+                console.log('SUCCESS', response)
 
                 //Store Token in localStorage (with an argument thats specific to your app)
                 localStorage.setItem('mernToken', response.data.token)

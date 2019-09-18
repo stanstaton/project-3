@@ -56,7 +56,6 @@ router.post('/signup', (req,res) => {
         res.send('Something went wrong')
     })
 })
-
 router.put('/:id', (req,res) => {
     db.User.findByIdAndUpdate({_id: req.params.id})
     .then(editedUser => {
@@ -70,7 +69,6 @@ router.put('/:id', (req,res) => {
         res.send({message: 'Something went wrong with the database'})
     })
 })
-
 router.get('/current/user', (req,res) => {
     console.log(req.user)
     //the user is logged in, so req.user should have data
