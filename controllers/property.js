@@ -3,34 +3,12 @@ let db = require('../models')
 require('dotenv').config()
 let jwt = require('jsonwebtoken')
 let expressJWT = require('express-jwt')
-let qpm = require('query-params-mongo')
 
-//middleware
-let processQuery = qpm({
-    autoDetect: [{ fieldPattern: /_id$/, dataType: 'objectId' }],
-    converters: {objectId: db.Property.ObjectID, maxNumberOfGuests: db.Property.maxNumberOfGuests, neighborhood: db.Property.neighborhood}
-});
-
-// router.get('/', (req,res) => {
-   
-//         let query = processQuery(req.query,
-//             {name: {dataType: 'string', required: false}},
-//             true)
-        
-//     // res.send('You made it')
-//     db.Property.find(query)
-//     .then(properties => {
-//         res.send({properties})
-//     })
-//     .catch(err => {
-//         console.log(err)
-//         res.send('Database issue')
-//     })
-// })
 
 router.get('/', (req,res) => {
     // res.send('You made it')
-    db.Property.find()
+    console.log(req.params, req.query)
+    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: req.query.dates_unavailable}})
     .then(properties => {
         res.send({properties})
     })
