@@ -21,7 +21,11 @@ let userSchema = new mongoose.Schema({
       maxlength: 32
     },
     profileUrl: String,
-    bookedProperties: Array
+    bookedProperties: Array,
+    properties: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Property'
+    }]
   })
 
   //use bcrypt to hash password
