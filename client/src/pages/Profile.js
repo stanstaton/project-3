@@ -45,9 +45,11 @@ const Profile = props => {
             </form>
 
             <hr />
-            <h2>Upcoming Bookings</h2>
+            <h2>Bookings</h2>
+
             <hr />
-            <h2>Past Bookings:</h2>
+            <h2>Owned Bookings:</h2>
+            
         </div>
        
     )
