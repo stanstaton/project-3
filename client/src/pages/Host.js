@@ -30,7 +30,7 @@ class Host extends React.Component {
             neighborhood: '',
             description: '',
             photo: '',
-            inputs: [],
+            photos: [],
             user: null,
             redirect: false
         }
@@ -48,9 +48,9 @@ class Host extends React.Component {
 
     addInput = (e) => {
         e.preventDefault()
-        let inputsCopy = [...this.state.inputs, this.state.photo]
+        let inputsCopy = [...this.state.photos, this.state.photo]
         this.setState({ 
-            inputs: inputsCopy,
+            photos: inputsCopy,
             photo: ''
         })
     }
@@ -93,7 +93,7 @@ class Host extends React.Component {
             return <Redirect to="/profile" />
         }
 
-        let inputsDisplay = this.state.inputs.map((propPic, idx) => {
+        let inputsDisplay = this.state.photos.map((propPic, idx) => {
             return <div key={idx}> {propPic} </div>
         })  
         return (
@@ -138,6 +138,7 @@ class Host extends React.Component {
                         <InputGroup>
                         <Input name="description" placeholder="Description" onChange={this.storeInput}/>
                         </InputGroup>
+                        <hr></hr>
                     </div>
                     <div>
                         {/* <label>Profile Image:</label> */}
@@ -145,7 +146,11 @@ class Host extends React.Component {
                         <Input name="photo" typ="url" placeholder="Your proptery photo" onChange={this.storeInput} value={this.state.photo}/>
                         </InputGroup>
                     </div>
-                    <div><button id="addPhotoInput" onClick={this.addInput}>+</button></div>
+                    <br></br> 
+                    <div><button id="addPhotoInput" onClick={this.addInput}>Add</button></div>
+                    <br></br> <br></br>
+                    Photos to Use:
+                    <br/>
                     {inputsDisplay}
                 </CardBody> 
                 <CardFooter className="text-center">
