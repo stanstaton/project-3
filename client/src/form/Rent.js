@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from "moment";
-import { Button, CustomInput, Form, FormGroup, Label} from 'reactstrap';
+import { Button, CustomInput, Form, FormGroup, Label, Input} from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
@@ -107,7 +107,7 @@ class Rent extends React.Component {
         
         <Form onSubmit={this.handleSubmit}>
             <FormGroup>
-            <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> 
+            <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> <br />
             <br />
             <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
                 <option value="Seattle">Seattle</option>
@@ -118,14 +118,16 @@ class Rent extends React.Component {
                 <option value="Rainier Valley">Rainier Valley</option>
                 <option value="University District">University District</option>
             </CustomInput>
+            <br />
             </FormGroup>
             <FormGroup>
-              <label>Number of Guests</label>
-              <input name="maxNumberOfGuests" onChange={this.handleChange} />
+              <label>Number of Guests:</label> <br/>
+              <br/>
+              <Input className="rentInputs" name="maxNumberOfGuests" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
-                <label>Select Start Date: </label>
-                <DatePicker
+                <label className="rentLabel">Start Date: </label> <br/>
+                <DatePicker className="react-datepicker"
                     selected={this.state.startDate}
                     onChange={date => this.handleChangeStart(date)}
                     selectsStart
@@ -135,8 +137,8 @@ class Rent extends React.Component {
                 />
                 </FormGroup>
                 <FormGroup>
-                <label>End Date:</label>
-                <DatePicker
+                <label className="rentLabel">End Date:</label> <br/>
+                <DatePicker className="react-datepicker"
                     selected={this.state.endDate}
                     onChange={date => this.handleChangeEnd(date)}
                     selectsEnd
