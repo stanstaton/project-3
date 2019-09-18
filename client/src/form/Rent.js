@@ -1,24 +1,12 @@
 import React from 'react';
 import moment from "moment";
-<<<<<<< HEAD
-import { Row, Button, CustomInput, Form, FormGroup, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Col} from 'reactstrap';
-// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-=======
-import { Button, CustomInput, Form, FormGroup, Label, Input} from 'reactstrap';
->>>>>>> 702fcb6b7488826705d45e4f7622a68dcb1d1afd
+import { Input, Row, Button, CustomInput, Form, FormGroup, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Col} from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
-<<<<<<< HEAD
 import Results from '../pages/Results';
-// import {Redirect} from 'react-router-dom'
-=======
-import Results from '../pages/Results'
-import {Redirect} from 'react-router-dom'
->>>>>>> d4885b55ed8afcdb939074bc5ad61ff8569b4a3c
-
 
 class Rent extends React.Component {
     constructor(props) {
@@ -170,26 +158,7 @@ class Rent extends React.Component {
             <Button type="submit">Search!</Button>
         </Form>
 
-        {/* ---------- */}
-        <div>
-            <Row>
-                <Col xs="3"></Col>
-                
-        <Col xs="auto">
-            <Card className="bob" >
-                <CardImg top width="10%" src="https://placekitten.com/g/200/300" alt="Card image cap" />
-                <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                <Button>Button</Button>
-                </CardBody>
-            </Card>
-         </Col>
-         <Col xs="3"></Col>
-         </Row>
-         </div>
-            {/* <Rental current={this.state.currentNeighborhood}/> */}
+        {/* <Rental current={this.state.currentNeighborhood}/> */}
 
         {results}
         <Rental current={this.state.currentNeighborhood}/>

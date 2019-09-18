@@ -20,9 +20,6 @@ import {
 
 const Profile = props => {
     //If user is not user than redirect to home page
-
-
-
     if(!props.user) {
         return <Redirect to="/" />
     }
