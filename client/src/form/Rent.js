@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
+import Results from '../pages/Results'
 import {Redirect} from 'react-router-dom'
 
 
@@ -71,7 +72,14 @@ class Rent extends React.Component {
         this.showState()
         console.log(SERVER_URL)
         console.log(this.state)
-        axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte":${this.state.maxNumberOfGuests}}`)
+        // axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte":${this.state.maxNumberOfGuests}}`)
+        axios.get(`http://localhost:3001/property`, {
+            params: {
+                maxNumberOfGuests: this.state.maxNumberOfGuests,
+                neighborhood: this.state.neighborhood,
+                dates_unavailable: this.state.dates_unavailable
+            }
+        })
         .then(response => {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
@@ -89,7 +97,7 @@ class Rent extends React.Component {
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
         let results = this.state.resultsObj.map((r,i) => {
-            return <Rental
+            return <Results
             key={i}
             result={r}
             />
@@ -145,8 +153,9 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
-        <Rental current={this.state.currentNeighborhood}/>
         {results}
+        <Rental current={this.state.currentNeighborhood}/>
+        
         </div>
         </div>
       
