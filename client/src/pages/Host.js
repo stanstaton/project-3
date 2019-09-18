@@ -20,14 +20,26 @@ import {
 
 
 class Host extends React.Component {
-    state = {
-        address: '',
-        city: '',
-        State: '',
-        neighborhood: '',
-        description: '',
-        photo: '',
-        inputs: []
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            address: '',
+            city: '',
+            State: '',
+            neighborhood: '',
+            description: '',
+            photo: '',
+            inputs: [],
+            user: null,
+            redirect: false
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.user) { 
+            this.setState({user: this.props.user._id})
+        }
     }
 
     storeInput = (e) => {
@@ -43,12 +55,16 @@ class Host extends React.Component {
         })
     }
 
+    returnRedirect = () => {
+        return <Redirect to="/profile" />
+    }
+
     handleSubmit = (e) => {
         let token = localStorage.getItem('mernToken')
         e.preventDefault()
         console.log('form was submitted', this.state, SERVER_URL)
         //send the user sig up data to the server
-        axios.post(`${SERVER_URL}/auth/property`, this.state, {
+        axios.post(`${SERVER_URL}/property/new`, this.state, {
             headers: { 'Authorization': `Bearer ${token}` }
           })
             .then(response => {
@@ -59,6 +75,7 @@ class Host extends React.Component {
 
                 //Update App with user info
                 this.props.updateUser()
+                this.setState({redirect: true})
             })
             .catch(err => {
                 // console.log('ERROR', err.response.data.message)
@@ -68,9 +85,14 @@ class Host extends React.Component {
     render() {
 
         //if user signs up, redirect to profile page
-        // if (this.props.user) {
-        //     return <Redirect to="/host" />
-        // }
+        if (!this.props.user) {
+            return <Redirect to="/login" />
+        }
+
+        if(this.state.redirect == true) {
+            return <Redirect to="/profile" />
+        }
+
         let inputsDisplay = this.state.inputs.map((propPic, idx) => {
             return <div key={idx}> {propPic} </div>
         })  
@@ -108,6 +130,12 @@ class Host extends React.Component {
                     <div>
                         {/* <label>Password:</label> */}
                         <InputGroup>
+                        <Input name="maxNumberOfGuests" placeholder="Maximum Number of Guests" onChange={this.storeInput}/>
+                        </InputGroup>
+                    </div>
+                    <div>
+                        {/* <label>Password:</label> */}
+                        <InputGroup>
                         <Input name="description" placeholder="Description" onChange={this.storeInput}/>
                         </InputGroup>
                     </div>
@@ -126,7 +154,7 @@ class Host extends React.Component {
                     to="/Home"
                     outline
                     size="lg" 
-                    type="submit">Sign Me Up!</Button>
+                    type="submit">Add New Property!</Button>
                 </CardFooter>
 
             </form>

@@ -26,11 +26,17 @@ class Search extends React.Component {
 
         console.log(SERVER_URL)
 
-        axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte": ${this.state.maxNumberOfGuests}}`)
+        axios.get(`http://localhost:3001/property`)
         .then(response => {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
         })
+
+        // axios.get(`http://localhost:3001/property?neighborhood=${this.state.neighborhood}&maxNumberOfGuests__gte=${this.state.maxNumberOfGuests}}`)
+        // .then(response => {
+        //     console.log(response)
+        //     this.setState({resultsObj: response.data.properties})
+        // })
     }
 
     handleChange = e => {
