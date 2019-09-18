@@ -1,15 +1,22 @@
 let router = require('express').Router()
 let db = require('../models')
 require('dotenv').config()
+<<<<<<< HEAD
 // let jwt = require('jsonwebtoken')
 // let expressJWT = require('express-jwt')
 
 
 //middleware
+=======
+let jwt = require('jsonwebtoken')
+let expressJWT = require('express-jwt')
+
+>>>>>>> d4885b55ed8afcdb939074bc5ad61ff8569b4a3c
 
 router.get('/', (req,res) => {
     // res.send('You made it')
-    db.Property.find()
+    console.log(req.params, req.query)
+    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: req.query.dates_unavailable}})
     .then(properties => {
         res.send({properties})
     })
