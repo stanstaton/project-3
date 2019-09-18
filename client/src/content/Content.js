@@ -17,9 +17,11 @@ const Content = props => {
         <div>
             <Route exact path="/" component={Home} />
 
-            <Route exact path="/rent" component={Rent} />
+            <Route exact path="/rent" render={
+                () => <Rent user={props.user} updateUser={props.updateUser}  />
+                } />
             <Route exact path="/host" render={
-               () => <Host user={props.user} /> 
+               () => <Host user={props.user} updateUser={props.updateUser} /> 
             } />
             <Route exact path="/search" component={Search} />
             <Route exact path="/profile" render={

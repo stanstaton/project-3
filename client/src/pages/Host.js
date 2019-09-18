@@ -69,6 +69,20 @@ class Host extends React.Component {
           })
             .then(response => {
                 console.log('SUCCESS', response)
+                let tempUserArr = [...this.props.user.ownedProperties]
+                tempUserArr.push(response.data.newProp._id)
+                let sentObj = {
+                    ownedProperties: tempUserArr
+                }
+                axios.put(`http://localhost:3001/auth/${this.props.user._id}`, sentObj, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                .then(response => {
+                    console.log('success')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
 
                 //Store Token in localStorage (with an argument thats specific to your app)
                 localStorage.setItem('mernToken', response.data.token)
