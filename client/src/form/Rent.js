@@ -1,4 +1,3 @@
-
 import React from 'react';
 import moment from "moment";
 import { Button, CustomInput, Form, FormGroup, Label} from 'reactstrap';
@@ -7,7 +6,6 @@ import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
-
 class Rent extends React.Component {
     constructor(props) {
         super(props)
@@ -36,7 +34,6 @@ class Rent extends React.Component {
         if (!moment.isMoment(endDate)) endDate = moment(endDate);
         if (startDate.isAfter(endDate)) {
             console.log('Start date must precede end date!')}
-
     
         return endDate.diff(startDate, "days");
     }
@@ -77,15 +74,11 @@ class Rent extends React.Component {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
         })
-
     }
-
     handleChange = e => {
       this.setState({maxNumberOfGuests: e.target.value})
       console.log(this.state.maxNumberOfGuests)
-
     }
-
     handleChange = e => {
         this.setState({maxNumberOfGuests: e.target.value})
         console.log(this.state.maxNumberOfGuests)
@@ -157,5 +150,4 @@ class Rent extends React.Component {
       
     )}
 }
-
 export default Rent

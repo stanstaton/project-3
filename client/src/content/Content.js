@@ -14,7 +14,7 @@ import Search from '../pages/Search'
 
 const Content = props => {
     return (
-        <div className="container">
+        <div>
             <Route exact path="/" component={Home} />
 
             <Route exact path="/rent" component={Rent} />

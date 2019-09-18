@@ -27,6 +27,7 @@ const Profile = props => {
         return <Redirect to="/" />
     }
     return (
+        
         <div>
             <h2>{props.user.firstname}'s Profile</h2>
             <img src={props.user.profileUrl} />
@@ -47,6 +48,7 @@ const Profile = props => {
             <hr />
             <h2>Past Bookings:</h2>
         </div>
+       
     )
 }
 
