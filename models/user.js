@@ -21,8 +21,11 @@ let userSchema = new mongoose.Schema({
       maxlength: 32
     },
     profileUrl: String,
-    bookedProperties: Array,
-    properties: [{
+    bookedProperties: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Property'
+    }],
+    ownedProperties: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Property'
     }]

@@ -68,6 +68,7 @@ class Rent extends React.Component {
         e.preventDefault()
         this.dateRange()
         this.showState()
+        console.log(this.props.user)
         console.log(SERVER_URL)
         console.log(this.state)
         // axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte":${this.state.maxNumberOfGuests}}`)
@@ -99,6 +100,9 @@ class Rent extends React.Component {
             return <Results
             key={i}
             result={r}
+            user={this.props.user}
+            updateUser={this.props.updateUser}
+            dates_unavailable={this.state.dates_unavailable}
             />
         })
         const today = new Date();

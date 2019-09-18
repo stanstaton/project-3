@@ -44,7 +44,7 @@ router.post('/new', (req,res) => {
         //prop doesn't exist
         db.Property.create(req.body)
         .then(newProp => {
-            res.send('Successful registration of property')
+            res.send({newProp})
         })
         .catch(err => {
             console.log(err)
@@ -59,13 +59,24 @@ router.post('/new', (req,res) => {
 })
 
 router.put('/:id', (req,res) => {
-    db.Property.findOneAndUpdate({_id: req.params.id}, req.body.id, {new: true})
+    db.Property.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
     .then(editedProperty => {
         res.send(editedProperty)
     })
     .catch(err => {
         console.log(err)
         res.status(404).send({message: 'Error accessing the database'})
+    })
+})
+
+router.delete('/:id', (req,res) => {
+    db.Property.findByIdAndDelete({_id: req.body.user})
+    .then(() => {
+        res.status(204).send()
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'Server Error'})
     })
 })
 
