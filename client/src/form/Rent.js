@@ -6,6 +6,9 @@ import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
+import {Redirect} from 'react-router-dom'
+
+
 class Rent extends React.Component {
     constructor(props) {
         super(props)
@@ -69,7 +72,7 @@ class Rent extends React.Component {
         this.showState()
         console.log(SERVER_URL)
         console.log(this.state)
-        axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte": ${this.state.maxNumberOfGuests}}`)
+        axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte":${this.state.maxNumberOfGuests}}`)
         .then(response => {
             console.log(response)
             this.setState({resultsObj: response.data.properties})
@@ -84,6 +87,7 @@ class Rent extends React.Component {
         console.log(this.state.maxNumberOfGuests)
     }
     render() {
+        
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
         
@@ -126,7 +130,7 @@ class Rent extends React.Component {
                     onChange={date => this.handleChangeStart(date)}
                     selectsStart
                     placeholder = {today}
-                    // startDate={this.state.startDate}
+                    startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
                 </FormGroup>
