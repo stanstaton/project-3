@@ -42,14 +42,14 @@ class Rent extends React.Component {
     }
     dateRange = () => {
         let dates_unavailable = []
-        let startDate =  this.state.startDate
+        let startDate =  new Date(this.state.startDate)
         // let copiedDate = new Date(startDate);
         let endDate =  this.state.endDate
         console.log('start', startDate)
         console.log('end', endDate)
         while (startDate <= endDate) {
             dates_unavailable.push(new Date(startDate));
-            // startDate.setDate(startDate.getDate() + 1);
+            startDate.setDate(startDate.getDate() + 1);
             console.log('Line 51-start', startDate)
             console.log('Line 52-end', endDate)
         }
@@ -68,7 +68,6 @@ class Rent extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.dateRange()
-        console.log('Submitted', this.state)
         this.showState()
         console.log(SERVER_URL)
         console.log(this.state)
@@ -87,10 +86,8 @@ class Rent extends React.Component {
         console.log(this.state.maxNumberOfGuests)
     }
     render() {
-        
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
-        
         let results = this.state.resultsObj.map((r,i) => {
             return <Rental
             key={i}
@@ -133,15 +130,16 @@ class Rent extends React.Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
-                </FormGroup>
-                <FormGroup>
+            </FormGroup>
+            <FormGroup>
                 <label>End Date:</label>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={date => this.handleChangeEnd(date)}
                     selectsEnd
                     endDate={this.state.endDate}
-                    minDate={this.state.startDate} />
+                    minDate={this.state.startDate} 
+                    />
                     <h2>Looking for a {daysLeft} night stay.</h2>
                     
             </FormGroup>
