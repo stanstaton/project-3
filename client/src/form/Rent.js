@@ -1,21 +1,23 @@
 import React from 'react';
 import moment from "moment";
-import { Button, CustomInput, Form, FormGroup, Label} from 'reactstrap';
+import { Row, Button, CustomInput, Form, FormGroup, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Col} from 'reactstrap';
+// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
-import {Redirect} from 'react-router-dom'
+import Results from '../pages/Results';
+// import {Redirect} from 'react-router-dom'
 
 
 class Rent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            neighborhood: 'Seattle',
-            propertiesName: 'Property Name',
-            image: 'https://placebear.com/200/300',
+            neighborhood: '',
+            propertiesName: '',
+            image: '',
             unAvailable: false,
             startDate: new Date("09/19/2019"),
             endDate: new Date("09/19/2019"),
@@ -85,6 +87,7 @@ class Rent extends React.Component {
         this.setState({maxNumberOfGuests: e.target.value})
         console.log(this.state.maxNumberOfGuests)
     }
+
     render() {
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
@@ -96,6 +99,8 @@ class Rent extends React.Component {
         })
         const today = new Date();
         today.setDate(today.getDate() + 1);
+        
+
         return (
         <div className="page-header clear-filter" filter-color="blue">
         <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
@@ -145,7 +150,26 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
-        <Rental current={this.state.currentNeighborhood}/>
+        {/* ---------- */}
+        <div>
+            <Row>
+                <Col xs="3"></Col>
+                
+        <Col xs="auto">
+            <Card className="bob" >
+                <CardImg top width="10%" src="https://placekitten.com/g/200/300" alt="Card image cap" />
+                <CardBody>
+                <CardTitle>Card title</CardTitle>
+                <CardSubtitle>Card subtitle</CardSubtitle>
+                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                <Button>Button</Button>
+                </CardBody>
+            </Card>
+         </Col>
+         <Col xs="3"></Col>
+         </Row>
+         </div>
+            {/* <Rental current={this.state.currentNeighborhood}/> */}
         {results}
         </div>
         </div>
