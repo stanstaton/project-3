@@ -68,11 +68,5 @@ router.get('/current/user', (req,res) => {
     res.send({user: req.user})
 })
 
-router.post('/current/user', (req, res) => {
-    console.log('this is the edit--- backend', req.body)
-
-    db.User.findByIdAndUpdate(req.body)
-
-})
 
 module.exports = router;
