@@ -18,6 +18,7 @@
     "express-jwt": "^5.3.1",
     "init": "^0.1.2",
     "jsonwebtoken": "^8.5.1",
+    "marked": "^0.7.0",
     "moment": "^2.24.0",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
@@ -26,5 +27,8 @@
     "react-datepicker": "^2.9.6",
     "reactstrap": "^8.0.1",
     "rowdy-logger": "^1.0.2"
+  },
+  "devDependencies": {
+    "react-edit-inline": "^1.0.8"
   }
 }

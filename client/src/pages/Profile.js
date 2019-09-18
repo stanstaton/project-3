@@ -1,44 +1,79 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import SERVER_URL from '.././constants'
+import axios from 'axios'
+
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    CardTitle,
-    Form,
     Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
-    Container,
-    Row
 } from "reactstrap";
 
 
 
-const Profile = props => {
-    //If user is not user than redirect to home page
-    if(!props.user) {
-        return <Redirect to="/" />
+class Profile extends React.Component {
+    constructor(props) {
+    super(props)
+    this.state = {
+        firstname: '',
+        lastname: '',
+        profileUrl: ''
+        }
+
     }
+    handleChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            [e.target.name]: e.target.value,
+        })
+
+
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        let token = localStorage.getItem('mernToken')
+        console.log('user form was submitted', this.state, SERVER_URL)
+        //send the user sig up data to the server
+        axios.post(`${SERVER_URL}/auth/current/user`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          })
+            .then(response => {
+                console.log('SUCCESS')
+
+                //Store Token in localStorage (with an argument thats specific to your app)
+                localStorage.setItem('mernToken', response.data.token)
+
+                //Update App with user info
+                this.props.updateUser()
+            })
+            .catch(err => {
+                // console.log('ERROR', err.response.data.message)
+            })
+    }
+   
+    render() {
+         //If user is not user than redirect to home page
+        if(!this.props.user) {
+        return <Redirect to="/profile" />
+    }
+
     return (
         
         <div>
-            <h2>{props.user.firstname}'s Profile</h2>
-            <img src={props.user.profileUrl} />
+            <h2>{this.props.user.firstname}'s Profile</h2>
+            <img src={this.props.user.profileUrl} />
             <h3>Update Profile</h3>
-            <form onSubmit={props.updateProfile}>
-                <Input name="firstname" value={props.user.firstname} />
+            <form onSubmit={this.handleSubmit}>
+                <Input name="firstname" placeholder={this.props.user.firstname} value={this.state.firstname} onChange={this.handleChange} />
                 <br /><br></br>
-                <Input name="lastname" value={props.user.lastname} />
+                <Input name="lastname" placeholder={this.props.user.lastname} value={this.state.lastname} onChange={this.handleChange} />
+                {/* <br /><br></br>
+                <Input name="email"  /> */}
                 <br /><br></br>
-                <Input name="email" value={props.user.email} />
-                <br /><br></br>
-                <Input name="profileUrl" value={props.user.profileUrl} />
+                <Input name="profileUrl" placeholder={this.props.user.profileUrl} value={this.state.profileUrl} onChange={this.handleChange}/>
                 <br></br><br></br><br></br>
-                <input className="btn btn-primary" type="submit" />
+                {/* <input className="btn btn-primary" type="submit" /> */}
+                <Button type="submit">Submit</Button>
             </form>
 
             <hr />
@@ -48,6 +83,7 @@ const Profile = props => {
         </div>
        
     )
+    }
 }
 
 export default Profile
