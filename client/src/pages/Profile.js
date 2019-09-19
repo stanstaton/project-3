@@ -56,7 +56,7 @@ class Profile extends React.Component {
     }
 
     return (
-        <div>
+        <div className="profile-container">
             <h2>{this.props.user.firstname}'s Profile</h2>
             <img src={this.props.user.profileUrl} />
             <h3>Update Profile</h3>
@@ -70,7 +70,6 @@ class Profile extends React.Component {
                 <label>Profile Url:</label>
                 <Input name="profileUrl" placeholder={this.props.user.profileUrl} value={this.state.profileUrl} onChange={this.handleChange}/>
                 <br />
-                {/* <input className="btn btn-primary" type="submit" /> */}
                 <Button type="submit">Submit</Button>
             </form>
             <hr />

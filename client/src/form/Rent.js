@@ -7,6 +7,7 @@ import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
 import Results from '../pages/Results';
+import {Redirect} from 'react-router-dom'
 
 class Rent extends React.Component {
     constructor(props) {
@@ -44,8 +45,8 @@ class Rent extends React.Component {
         let startDate =  new Date(this.state.startDate)
         // let copiedDate = new Date(startDate);
         let endDate =  this.state.endDate
-        console.log('start', startDate)
-        console.log('end', endDate)
+        // console.log('start', startDate)
+        // console.log('end', endDate)
         while (startDate <= endDate) {
             dates_unavailable.push(new Date(startDate));
             startDate.setDate(startDate.getDate() + 1);
@@ -53,7 +54,7 @@ class Rent extends React.Component {
             console.log('Line 52-end', endDate)
         }
         console.log(dates_unavailable)
-        this.setState({dates_unavailable: dates_unavailable})
+        this.setState({dates_unavailable: [dates_unavailable]})
         return dates_unavailable;
     }
     showState = () => {
@@ -106,6 +107,10 @@ class Rent extends React.Component {
         })
         const today = new Date();
         today.setDate(today.getDate() + 1);
+
+        if(!this.props.user) {
+            return <Redirect to="/login" />
+        }
         
 
         return (

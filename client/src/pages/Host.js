@@ -79,6 +79,12 @@ class Host extends React.Component {
                 })
                 .then(response => {
                     console.log('success')
+                    //Store Token in localStorage (with an argument thats specific to your app)
+                    localStorage.setItem('mernToken', response.data.token)
+
+                    //Update App with user info
+                    this.props.updateUser()
+                    this.setState({redirect: true})
                 })
                 .catch(err => {
                     console.log(err)

@@ -19,7 +19,7 @@ class IndexHeader extends React.Component {
                 alt="..."
                 className="n-logo"
                 src={require("../assets/img/now-logo.png")}
-              ></img>
+              ></img> 
               <h1 className="h1-seo">SEABNB</h1>
               <h3>Seattle Air-BNBetter</h3>
               {/* <SignUp /> */}

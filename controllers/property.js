@@ -8,8 +8,8 @@ let expressJWT = require('express-jwt')
 
 router.get('/', (req,res) => {
     // res.send('You made it')
-    console.log(req.params, req.query)
-    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: req.query.dates_unavailable}})
+    console.log(req.query)
+    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: [req.query.dates_unavailable]}})
     .then(properties => {
         res.send({properties})
     })

@@ -48,11 +48,12 @@ class Results extends React.Component {
         axios.put(`http://localhost:3001/property/${this.props.result._id}`, this.state)
         .then((response) => {
             console.log('Form was submitted')
-            axios.put(`http://localhost:3001/auth/${this.state.user._id}`, sentObj, {
+            axios.put(`http://localhost:3001/auth/${this.props.user._id}`, sentObj, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             .then(response => {
-                console.log('success')
+                console.log('success', response)
+                localStorage.setItem('mernToken', response.data.token)
                 this.props.updateUser()
             })
             .catch(err => {
