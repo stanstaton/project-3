@@ -67,14 +67,24 @@ class Profile extends React.Component {
             return <Redirect to="/" />
         }
 
-        
-        let ownedResults = this.props.user.ownedProperties.map((r,i) => {
-            return <PropertiesOwned key={i} results={r}  />
-        })
-
-        let bookedResults = this.props.user.bookedProperties.map((r,i) => {
-            return <PropertiesBooked key={i} results={r}  />
-        })
+        if (this.props.user.ownedProperties){
+            var ownedResults = this.props.user.ownedProperties.map((r,i) => {
+                return <PropertiesOwned key={i} results={r}  />
+            })
+        } else {
+            var ownedResults = () => {
+                return <div></div>
+            }
+        }
+        if(this.props.user.bookedProperties) {
+            var bookedResults = this.props.user.bookedProperties.map((r,i) => {
+                return <PropertiesBooked key={i} results={r}  />
+            })
+        } else {
+            var bookedResults = () => {
+                return <div></div>
+            }
+        }
 
         return (
             <div>
@@ -94,15 +104,14 @@ class Profile extends React.Component {
                     <Button type="submit">Submit</Button>
                 </form>
                 <hr />
-                <h2>Bookings:</h2>
+                <h3>Bookings:</h3>
                     {bookedResults}
                 <hr />
-                <h2>Owned Properties:</h2>
-                {ownedResults}
+                <h3>Owned Properties:</h3>
+                    {ownedResults}
             </div>
         
         )
     }
 }
-
 export default Profile

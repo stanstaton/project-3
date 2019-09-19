@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from "moment";
-import { Input, Row, Button, CustomInput, Form, FormGroup, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Col} from 'reactstrap';
+import { Input, Button, CustomInput, Form, FormGroup } from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
@@ -22,7 +22,7 @@ class Rent extends React.Component {
             days: 0,  
             dates_unavailable: [],
             maxNumberOfGuests: 0,
-            // neighborhood: 'Ballard',
+            neighborhood: '',
             resultsObj: []
         }
     }
@@ -45,8 +45,8 @@ class Rent extends React.Component {
         let startDate =  new Date(this.state.startDate)
         // let copiedDate = new Date(startDate);
         let endDate =  this.state.endDate
-        console.log('start', startDate)
-        console.log('end', endDate)
+        // console.log('start', startDate)
+        // console.log('end', endDate)
         while (startDate <= endDate) {
             dates_unavailable.push(new Date(startDate));
             startDate.setDate(startDate.getDate() + 1);
@@ -54,7 +54,7 @@ class Rent extends React.Component {
             console.log('Line 52-end', endDate)
         }
         console.log(dates_unavailable)
-        this.setState({dates_unavailable: dates_unavailable})
+        this.setState({dates_unavailable: [dates_unavailable]})
         return dates_unavailable;
     }
     showState = () => {
@@ -114,64 +114,57 @@ class Rent extends React.Component {
         
 
         return (
-        <div className="page-header clear-filter" filter-color="blue">
-        <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
-        <div className='Rental-Form'>
-        <h1>Rent</h1>
+            <div className="page-header clear-filter" filter-color="blue">
+            <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
+            <div className='Rental-Form'>
+            <h1>Rent</h1>
         
-        <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
-            {/* <Label className="Rental-Content selectNeighborhood" for="exampleCustomSelect">Select Neighborhood</Label> <br /> */}
-            <br />
-            <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
-                <option value="Seattle">Seattle</option>
-                <option value="Ballard">Ballard</option>
-                <option value="Beacon Hill">Beacon Hill</option>
-                <option value="Capitol Hill">Capitol Hill</option>
-                <option value="Queen Anne">Queen Anne</option>
-                <option value="Rainier Valley">Rainier Valley</option>
-                <option value="University District">University District</option>
-            </CustomInput>
-            <br />
-            </FormGroup>
-            <FormGroup>
-              <label>Number of Guests:</label> <br/>
-              <br/>
-              <Input className="rentInputs" name="maxNumberOfGuests" onChange={this.handleChange} />
-            </FormGroup>
-            <FormGroup>
-                <label className="rentLabel">Start Date: </label> <br/>
-                <DatePicker className="react-datepicker"
-                    selected={this.state.startDate}
-                    onChange={date => this.handleChangeStart(date)}
-                    selectsStart
-                    placeholder = {today}
-                    startDate={this.state.startDate}
-                    endDate={this.state.endDate}
-                />
+            <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                    <br />
+                    <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
+                        <option value="Seattle">Seattle</option>
+                        <option value="Ballard">Ballard</option>
+                        <option value="Beacon Hill">Beacon Hill</option>
+                        <option value="Capitol Hill">Capitol Hill</option>
+                        <option value="Queen Anne">Queen Anne</option>
+                        <option value="Rainier Valley">Rainier Valley</option>
+                        <option value="University District">University District</option>
+                    </CustomInput>
+                    <br />
                 </FormGroup>
                 <FormGroup>
-                <label className="rentLabel">End Date:</label> <br/>
-                <DatePicker className="react-datepicker"
-                    selected={this.state.endDate}
-                    onChange={date => this.handleChangeEnd(date)}
-                    selectsEnd
-                    endDate={this.state.endDate}
-                    minDate={this.state.startDate} 
+                    <label>Number of Guests:</label>
+                    <br/><br/>
+                    <Input className="rentInputs" name="maxNumberOfGuests" onChange={this.handleChange} />
+                </FormGroup>
+                <FormGroup>
+                    <label className="rentLabel">Start Date: </label> <br/>
+                    <DatePicker className="react-datepicker"
+                        selected={this.state.startDate}
+                        onChange={date => this.handleChangeStart(date)}
+                        selectsStart
+                        placeholder = {today}
+                        startDate={this.state.startDate}
+                        endDate={this.state.endDate}
                     />
-                    <h2>Looking for a {daysLeft} night stay.</h2>
-                    
-            </FormGroup>
-            <Button type="submit">Search!</Button>
-        </Form>
-
-        {results}
-        
-        <Rental current={this.state.neighborhood}/>
-        
+                </FormGroup>
+                <FormGroup>
+                    <label className="rentLabel">End Date:</label> <br/>
+                    <DatePicker className="react-datepicker"
+                        selected={this.state.endDate}
+                        onChange={date => this.handleChangeEnd(date)}
+                        selectsEnd
+                        endDate={this.state.endDate}
+                        minDate={this.state.startDate} 
+                        />
+                        <h2>Looking for a {daysLeft} night stay in {this.state.neighborhood}.</h2>  
+                </FormGroup>
+                <Button type="submit">Search!</Button>
+            </Form>
+            {results}        
         </div>
-        </div>
-      
+        </div>  
     )}
 }
 export default Rent
