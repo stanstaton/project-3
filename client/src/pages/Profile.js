@@ -24,15 +24,6 @@ class Profile extends React.Component {
         })
     }
 
-    // componentDidMount {
-    //     let user = this.props.user
-    //     user.ownedProperties.forEach(op => {
-    //         axios.get(`${SERVER_URL}/property/${op._id}`)
-    //         .then(foundProps => {
-                
-    //         })
-    //     })
-    // }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -67,14 +58,25 @@ class Profile extends React.Component {
             return <Redirect to="/" />
         }
 
-        
-        let ownedResults = this.props.user.ownedProperties.map((r,i) => {
-            return <PropertiesOwned key={i} results={r}  />
-        })
+        if (this.props.user.ownedProperties){
+            var ownedResults = this.props.user.ownedProperties.map((r,i) => {
+                return <PropertiesOwned key={i} results={r}  />
+            })
+        } else {
+            var ownedResults = () => {
+                return <div></div>
+            }
+        }
 
-        let bookedResults = this.props.user.bookedProperties.map((r,i) => {
-            return <PropertiesBooked key={i} results={r}  />
-        })
+        if(this.props.user.bookedProperties) {
+            var bookedResults = this.props.user.bookedProperties.map((r,i) => {
+                return <PropertiesBooked key={i} results={r}  />
+            })
+        } else {
+            var bookedResults = () => {
+                return <div></div>
+            }
+        }
 
         return (
             <div>
@@ -98,7 +100,7 @@ class Profile extends React.Component {
                     {bookedResults}
                 <hr />
                 <h2>Owned Properties:</h2>
-                {ownedResults}
+                    {ownedResults}
             </div>
         
         )
