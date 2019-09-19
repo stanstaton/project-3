@@ -32,13 +32,12 @@ class Profile extends React.Component {
           })
             .then(response => {
                 console.log('SUCCESS', response.token, token)
-                // this.setState({tokne: response})
+
                 //Store Token in localStorage (with an argument thats specific to your app)
                 localStorage.setItem('mernToken', response.data.token)
 
                 //Update App with user info
                 this.props.updateUser()
-            
             })
             .catch(err => {
                 // console.log('ERROR', err.response.data.message)
@@ -52,7 +51,6 @@ class Profile extends React.Component {
     }
 
     return (
-        
         <div>
             <h2>{this.props.user.firstname}'s Profile</h2>
             <img src={this.props.user.profileUrl} />
