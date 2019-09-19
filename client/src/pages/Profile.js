@@ -96,15 +96,16 @@ class Profile extends React.Component {
                     <Button type="submit">Submit</Button>
                 </form>
                 <hr />
-                <h2>Bookings:</h2>
+                <h3>Bookings:</h3>
                     {bookedResults}
                 <hr />
+
                 <h2>Owned Properties:</h2>
+
                     {ownedResults}
             </div>
         
         )
     }
 }
-
 export default Profile
