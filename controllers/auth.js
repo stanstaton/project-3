@@ -57,12 +57,14 @@ router.post('/signup', (req,res) => {
     })
 })
 router.put('/:id', (req,res) => {
-    db.User.findByIdAndUpdate({_id: req.params.id})
+    console.log(req.body)
+    db.User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true})
+    
     .then(editedUser => {
-        let token = jwt.sign(editedUser.toJSON(), process.env.JWT_SECRET, {
-            expiresIn: 60*60*8
+        let token = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
+            expiresIn: 60*60*8 //in seconds
         })
-        res.send(token)
+        res.send('edited user', token, editedUser)
     })
     .catch(err => {
         console.log(err)
