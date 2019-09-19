@@ -5,6 +5,7 @@ import SERVER_URL from '.././constants'
 import { Button, Card, CardBody, CardFooter, Input, InputGroup, Container, Row } from "reactstrap";
 
 
+
 class Signup extends React.Component {
     state = {
         firstname: '',
@@ -41,7 +42,8 @@ class Signup extends React.Component {
 
         //if user signs up, redirect to profile page
         if (this.props.user) {
-            return <Redirect to="/profile" />
+            return <Redirect to="/profile" 
+            />
         }
         return (
             <Container>
@@ -95,6 +97,7 @@ class Signup extends React.Component {
             </Card>
             </Row>
             </Container>
+            
                 )
             }
         }

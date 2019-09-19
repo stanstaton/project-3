@@ -1,22 +1,20 @@
 import React from 'react';
 import moment from "moment";
-import { Button, CustomInput, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Input, Row, Button, CustomInput, Form, FormGroup, Label, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Col} from 'reactstrap';
 import Rental from './Rental';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
-import Results from '../pages/Results'
-import {Redirect} from 'react-router-dom'
-
+import Results from '../pages/Results';
 
 class Rent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            neighborhood: 'Seattle',
-            propertiesName: 'Property Name',
-            image: 'https://placebear.com/200/300',
+            neighborhood: '',
+            propertiesName: '',
+            image: '',
             unAvailable: false,
             startDate: new Date("09/19/2019"),
             endDate: new Date("09/19/2019"),
@@ -70,9 +68,9 @@ class Rent extends React.Component {
         e.preventDefault()
         this.dateRange()
         this.showState()
+        console.log(this.props.user)
         console.log(SERVER_URL)
         console.log(this.state)
-        // axios.get(`http://localhost:3001/property/?neighborhood=${this.state.neighborhood}&maxNumberOfGuests={"gte":${this.state.maxNumberOfGuests}}`)
         axios.get(`http://localhost:3001/property`, {
             params: {
                 maxNumberOfGuests: this.state.maxNumberOfGuests,
@@ -93,6 +91,7 @@ class Rent extends React.Component {
         this.setState({maxNumberOfGuests: e.target.value})
         console.log(this.state.maxNumberOfGuests)
     }
+
     render() {
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
@@ -100,10 +99,15 @@ class Rent extends React.Component {
             return <Results 
             key={i}
             result={r}
+            user={this.props.user}
+            updateUser={this.props.updateUser}
+            dates_unavailable={this.state.dates_unavailable}
             />
         })
         const today = new Date();
         today.setDate(today.getDate() + 1);
+        
+
         return (
         <div className="page-header clear-filter" filter-color="blue">
         <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
@@ -155,7 +159,7 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
-        
+
         {results}
         
         <Rental current={this.state.neighborhood}/>

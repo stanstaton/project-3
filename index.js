@@ -23,7 +23,8 @@ app.use('/auth',expressJWT({
 }).unless({
     path: [
         {url: '/auth/login', methods: ['POST']},
-        {url: '/auth/signup', methods: ['POST']}
+        {url: '/auth/signup', methods: ['POST']},
+        {url: '/auth/current/user', methods: ['POST']}
     ]
 }), require('./controllers/auth'))
 app.use('/property', require('./controllers/property'))
