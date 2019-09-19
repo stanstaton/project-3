@@ -1,5 +1,8 @@
 import React from 'react'
-import axios from 'axios'
+import SimpleImageSlider from "react-simple-image-slider";
+import { Button, CustomInput, Form, FormGroup, Label, Input, Card} from 'reactstrap';
+import axios from 'axios';
+
 
 
 
@@ -60,22 +63,48 @@ class Results extends React.Component {
             console.log(err)
         })
     }
+
+//     handleSubmit = e => {
+//         e.preventDefault()
+//         Axios.put(`http://localhost:3001/property/${props.result._id}`, this.state,)
+//     }
+
+       
     
-    render (){
-        return (
-            <div>
-                <h3>
-                    {this.props.result.address}
-                </h3>
-                <img src={this.props.result.photos[0]} />
-                <p>{this.props.result.city}, {this.props.result.state}</p>
-                <p>{this.props.result.maxNumberOfGuests}</p>
-                <form onSubmit={this.handleSubmit}>
+render () {
+    let photosArr = this.props.result.photos.map((photoUrl, index) => {
+        return {url: photoUrl}
+    })
+
+    if (photosArr.length == 0) {
+        photosArr = [{url: "https://cdn.pixabay.com/photo/2019/03/13/14/21/home-4052993_960_720.png"}]
+    }
+    return (
+        <Card   className="rentResults" >
+            <h3>
+                {this.props.result.address}
+            </h3>
+            <div className="minHeight">
+            <SimpleImageSlider className="slider"
+                    width={500}
+                    height={400}
+                    images= {photosArr}
+            // {this.props.result.photos.map((photoUrl, index) => {
+            //     return {url: photoUrl}
+            //                })}
+            />
+            </div>
+            {/* <img src={this.props.result.photos[0]} /> */}
+            <p>{this.props.result.city}, {this.props.result.state}</p>
+            <p>{this.props.result.maxNumberOfGuests}</p>
+                            <form onSubmit={this.handleSubmit}>
                 <input type="submit" value="Book it!" />
                 </form>
-            </div>
-        )
+            {/* <button onClick={handleSubmit}>Book it!</button> */}
+        </Card>
+    )
     }
+
 }
 
 export default Results
