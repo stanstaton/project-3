@@ -8,8 +8,8 @@ let expressJWT = require('express-jwt')
 
 router.get('/', (req,res) => {
     // res.send('You made it')
-    console.log(req.query)
-    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: [req.query.dates_unavailable]}})
+    console.dir(req.query)
+    db.Property.find({maxNumberOfGuests: {$gte: req.query.maxNumberOfGuests}, neighborhood: req.query.neighborhood, dates_unavailable: {$nin: req.query.dates_unavailable}})
     .then(properties => {
         res.send({properties})
     })
@@ -59,8 +59,19 @@ router.post('/new', (req,res) => {
 })
 
 router.put('/:id', (req,res) => {
-    db.Property.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+    console.log(req.body)
+    db.Property.findOne({_id: req.params.id})
+    .then(property => {
+        console.dir('This is the property dates unavailable', property)
+        req.body.dates_unavailable.forEach(p => {
+            property.dates_unavailable.push(p)
+        })
+        console.log(property)
+        return property.save()
+        
+    })
     .then(editedProperty => {
+       
         res.send(editedProperty)
     })
     .catch(err => {
