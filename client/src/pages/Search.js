@@ -55,6 +55,7 @@ class Search extends React.Component {
             return <Results 
             key={i}
             result={r}
+            user={this.props.user}
             />
         })
 

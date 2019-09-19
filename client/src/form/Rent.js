@@ -7,6 +7,7 @@ import axios from 'axios'
 import SERVER_URL from '../constants'
 import "react-datepicker/dist/react-datepicker.css";
 import Results from '../pages/Results';
+import {Redirect} from 'react-router-dom'
 
 class Rent extends React.Component {
     constructor(props) {
@@ -106,6 +107,10 @@ class Rent extends React.Component {
         })
         const today = new Date();
         today.setDate(today.getDate() + 1);
+
+        if(!this.props.user) {
+            return <Redirect to="/login" />
+        }
         
 
         return (

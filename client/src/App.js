@@ -23,6 +23,8 @@ class App extends React.Component {
 
   updateProfile = (e) => {
     e.preventDefault()
+    
+    this.getUser()
     console.log('Submitted')
 
   }

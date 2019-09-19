@@ -4,6 +4,8 @@ import SERVER_URL from '.././constants'
 import axios from 'axios'
 
 import { Button, Input } from "reactstrap";
+import PropertiesOwned from './PropertiesOwned';
+import PropertiesBooked from './PropertiesBooked';
 
 
 class Profile extends React.Component {
@@ -22,6 +24,16 @@ class Profile extends React.Component {
         })
     }
 
+    // componentDidMount {
+    //     let user = this.props.user
+    //     user.ownedProperties.forEach(op => {
+    //         axios.get(`${SERVER_URL}/property/${op._id}`)
+    //         .then(foundProps => {
+                
+    //         })
+    //     })
+    // }
+
     handleSubmit = (e) => {
         e.preventDefault()
         let token = localStorage.getItem('mernToken')
@@ -31,13 +43,18 @@ class Profile extends React.Component {
             headers: { 'Authorization': `Bearer ${token}` }
           })
             .then(response => {
-                console.log('SUCCESS', response.token, token)
+                console.log('SUCCESS', response.data.token, token)
 
                 //Store Token in localStorage (with an argument thats specific to your app)
                 localStorage.setItem('mernToken', response.data.token)
 
                 //Update App with user info
                 this.props.updateUser()
+                this.setState({
+                    firstname: '',
+                    lastname: '',
+                    profileUrl: ''
+                })
             })
             .catch(err => {
                 // console.log('ERROR', err.response.data.message)
@@ -47,35 +64,44 @@ class Profile extends React.Component {
     render() {
          //If user is not user than redirect to home page
         if(!this.props.user) {
-        return <Redirect to="/profile" />
-    }
+            return <Redirect to="/" />
+        }
 
-    return (
-        <div>
-            <h2>{this.props.user.firstname}'s Profile</h2>
-            <img src={this.props.user.profileUrl} />
-            <h3>Update Profile</h3>
-            <form onSubmit={this.handleSubmit}>
-                <Input name="firstname" placeholder={this.props.user.firstname} value={this.state.firstname} onChange={this.handleChange} />
-                <br />
-                <Input name="lastname" placeholder={this.props.user.lastname} value={this.state.lastname} onChange={this.handleChange} />
-                {/* <br /><br></br>
-                <Input name="email"  /> */}
-                <br />
-                <Input name="profileUrl" placeholder={this.props.user.profileUrl} value={this.state.profileUrl} onChange={this.handleChange}/>
-                <br />
-                {/* <input className="btn btn-primary" type="submit" /> */}
-                <Button type="submit">Submit</Button>
-            </form>
-            <hr />
-            <h2>Bookings:</h2>
+        
+        let ownedResults = this.props.user.ownedProperties.map((r,i) => {
+            return <PropertiesOwned key={i} results={r}  />
+        })
 
-            <hr />
-            <h2>Owned Bookings:</h2>
-            
-        </div>
-       
-    )
+        let bookedResults = this.props.user.bookedProperties.map((r,i) => {
+            return <PropertiesBooked key={i} results={r}  />
+        })
+
+        return (
+            <div>
+                <h2>{this.props.user.firstname}'s Profile</h2>
+                <img src={this.props.user.profileUrl} />
+                <h3>Update Profile</h3>
+                <form onSubmit={this.handleSubmit}>
+                    <Input name="firstname" placeholder={this.props.user.firstname} value={this.state.firstname} onChange={this.handleChange} />
+                    <br />
+                    <Input name="lastname" placeholder={this.props.user.lastname} value={this.state.lastname} onChange={this.handleChange} />
+                    {/* <br /><br></br>
+                    <Input name="email"  /> */}
+                    <br />
+                    <Input name="profileUrl" placeholder={this.props.user.profileUrl} value={this.state.profileUrl} onChange={this.handleChange}/>
+                    <br />
+                    {/* <input className="btn btn-primary" type="submit" /> */}
+                    <Button type="submit">Submit</Button>
+                </form>
+                <hr />
+                <h2>Bookings:</h2>
+                    {bookedResults}
+                <hr />
+                <h2>Owned Properties:</h2>
+                {ownedResults}
+            </div>
+        
+        )
     }
 }
 
