@@ -56,21 +56,21 @@ router.post('/signup', (req,res) => {
         res.send('Something went wrong')
     })
 })
-
 router.put('/:id', (req,res) => {
-    db.User.findByIdAndUpdate({_id: req.params.id})
+    console.log(req.body)
+    db.User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true})
+    
     .then(editedUser => {
-        let token = jwt.sign(editedUser.toJSON(), process.env.JWT_SECRET, {
-            expiresIn: 60*60*8
+        let token = jwt.sign(newUser.toJSON(), process.env.JWT_SECRET, {
+            expiresIn: 60*60*8 //in seconds
         })
-        res.send(token)
+        res.send('edited user', token, editedUser)
     })
     .catch(err => {
         console.log(err)
         res.send({message: 'Something went wrong with the database'})
     })
 })
-
 router.get('/current/user', (req,res) => {
     console.log(req.user)
     //the user is logged in, so req.user should have data
