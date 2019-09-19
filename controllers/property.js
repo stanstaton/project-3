@@ -1,6 +1,7 @@
 let router = require('express').Router()
 let db = require('../models')
 require('dotenv').config()
+
 let jwt = require('jsonwebtoken')
 let expressJWT = require('express-jwt')
 

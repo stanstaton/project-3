@@ -13,7 +13,8 @@ import SERVER_URL from './constants'
 
 class App extends React.Component {
   state = {
-    user: null
+    user: null,
+    value: ''
   }
   componentDidMount() {
     //Go look for a token
@@ -25,10 +26,12 @@ class App extends React.Component {
     localStorage.setItem('mernToken', response.data.token)
     this.getUser()
     console.log('Submitted')
+
   }
 
 
   getUser = () => {
+    console.log('in getUSER')
     //See if there is a token
     let token = localStorage.getItem('mernToken')
 
