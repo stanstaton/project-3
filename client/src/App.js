@@ -56,19 +56,15 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-         <div className="page-header clear-filter" filter-color="blue">
+        <div className="page-header clear-filter" filter-color="blue">
            
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("./assets/img/seattle.jpg") + ")"
-          }}
-          // ref={pageHeader}
-        ></div> 
+        <div className="page-header-image"
+          style={{ backgroundImage: "url(" + require("./assets/img/seattle.jpg") + ")" }}>
+        </div> 
           <Nav updateUser={this.getUser} user={this.state.user}/>
-          
-          <Footer/>
-          <Content updateProfile={this.updateProfile} updateUser={this.getUser} user={this.state.user}/>
+
+        <Footer/>
+        <Content updateProfile={this.updateProfile} updateUser={this.getUser} user={this.state.user}/>
         </div>
         </div>
       </Router>

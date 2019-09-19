@@ -31,13 +31,18 @@ class Profile extends React.Component {
             headers: { 'Authorization': `Bearer ${token}` }
           })
             .then(response => {
-                console.log('SUCCESS', response.token, token)
+                console.log('SUCCESS', response, token)
 
                 //Store Token in localStorage (with an argument thats specific to your app)
                 localStorage.setItem('mernToken', response.data.token)
-
+              
                 //Update App with user info
                 this.props.updateUser()
+                this.props.setState({
+                    firstname: '',
+                    lastname: '',
+                    profileUrl: ''
+                })
             })
             .catch(err => {
                 // console.log('ERROR', err.response.data.message)
@@ -56,26 +61,27 @@ class Profile extends React.Component {
             <img src={this.props.user.profileUrl} />
             <h3>Update Profile</h3>
             <form onSubmit={this.handleSubmit}>
+                <label>First Name:</label>
                 <Input name="firstname" placeholder={this.props.user.firstname} value={this.state.firstname} onChange={this.handleChange} />
                 <br />
+                <label>Last Name:</label>
                 <Input name="lastname" placeholder={this.props.user.lastname} value={this.state.lastname} onChange={this.handleChange} />
-                {/* <br /><br></br>
-                <Input name="email"  /> */}
                 <br />
+                <label>Profile Url:</label>
                 <Input name="profileUrl" placeholder={this.props.user.profileUrl} value={this.state.profileUrl} onChange={this.handleChange}/>
                 <br />
                 {/* <input className="btn btn-primary" type="submit" /> */}
                 <Button type="submit">Submit</Button>
             </form>
             <hr />
-            <h2>Bookings:</h2>
+            <h3>Bookings:</h3>
 
             <hr />
-            <h2>Owned Bookings:</h2>
+            <h3>Owned Properties:</h3>
             
-        </div>
+            </div>
        
-    )
+        )
     }
 }
 
