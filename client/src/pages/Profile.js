@@ -4,6 +4,8 @@ import SERVER_URL from '.././constants'
 import axios from 'axios'
 
 import { Button, Input } from "reactstrap";
+import PropertiesOwned from './PropertiesOwned';
+import PropertiesBooked from './PropertiesBooked';
 
 
 class Profile extends React.Component {
@@ -21,6 +23,16 @@ class Profile extends React.Component {
             [e.target.name]: e.target.value,
         })
     }
+
+    // componentDidMount {
+    //     let user = this.props.user
+    //     user.ownedProperties.forEach(op => {
+    //         axios.get(`${SERVER_URL}/property/${op._id}`)
+    //         .then(foundProps => {
+                
+    //         })
+    //     })
+    // }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -55,6 +67,15 @@ class Profile extends React.Component {
             return <Redirect to="/" />
         }
 
+        
+        let ownedResults = this.props.user.ownedProperties.map((r,i) => {
+            return <PropertiesOwned key={i} results={r}  />
+        })
+
+        let bookedResults = this.props.user.bookedProperties.map((r,i) => {
+            return <PropertiesBooked key={i} results={r}  />
+        })
+
         return (
             <div>
                 <h2>{this.props.user.firstname}'s Profile</h2>
@@ -74,10 +95,10 @@ class Profile extends React.Component {
                 </form>
                 <hr />
                 <h2>Bookings:</h2>
-
+                    {bookedResults}
                 <hr />
                 <h2>Owned Properties:</h2>
-                
+                {ownedResults}
             </div>
         
         )

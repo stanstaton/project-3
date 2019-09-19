@@ -23,6 +23,8 @@ router.post('/login', (req,res) => {
               expiresIn: 60*60*8 //8 hours in seconds
           })
 
+          console.log(token)
+
           res.send({token})
     })
     .catch(err => {
