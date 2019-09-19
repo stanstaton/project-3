@@ -22,8 +22,12 @@ class PropertiesOwned extends Component {
 
     render() {
         return (
-            <div>
-                <h5>{this.state.property.address}</h5>
+            <div className="properties-owned" > 
+                <h5>Address: {this.state.property.address}</h5>
+                <h5>Neighborhood: {this.state.property.neighborhood}</h5>
+                <h5>Description: {this.state.property.description}</h5>
+                <h5>Maximum Guests: {this.state.property.maxNumberOfGuests}</h5>
+                
             </div>
         )
     }

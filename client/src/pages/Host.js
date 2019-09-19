@@ -132,13 +132,13 @@ class Host extends React.Component {
                     <div>
                         {/* <label>Last Name:</label> */}
                         <InputGroup>
-                        <Input name="city" placeholder="Your city" onChange={this.storeInput}/>
+                        <Input name="city" value="Seattle"  onChange={this.storeInput}/>
                         </InputGroup>
                     </div>
                     <div>
                         {/* <label>Email:</label> */}
                         <InputGroup>
-                        <Input name="State"  placeholder="Your state" onChange={this.storeInput}/>
+                        <Input name="State"  value="Washington" onChange={this.storeInput}/>
                         </InputGroup>
                     </div>
                     <div>
