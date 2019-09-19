@@ -50,6 +50,7 @@ class Results extends React.Component {
             })
             .then(response => {
                 console.log('success')
+                localStorage.setItem('mernToken', response.data.token)
                 this.props.updateUser()
             })
             .catch(err => {
