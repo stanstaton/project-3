@@ -22,6 +22,8 @@ class App extends React.Component {
 
   updateProfile = (e) => {
     e.preventDefault()
+    localStorage.setItem('mernToken', response.data.token)
+    this.getUser()
     console.log('Submitted')
   }
 
