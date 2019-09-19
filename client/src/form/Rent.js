@@ -97,7 +97,7 @@ class Rent extends React.Component {
         const { startDate, endDate } = this.state;
         const daysLeft = this.daysLeft(startDate, endDate);
         let results = this.state.resultsObj.map((r,i) => {
-            return <Results
+            return <Results 
             key={i}
             result={r}
             />
@@ -108,11 +108,11 @@ class Rent extends React.Component {
         <div className="page-header clear-filter" filter-color="blue">
         <div className="page-header-image" style={{ backgroundImage: "url(" + require("../assets/img/seattle.jpg") + ")" }}> </div>
         <div className='Rental-Form'>
-        <h1>Rental Content</h1>
+        <h1>Rent</h1>
         
         <Form onSubmit={this.handleSubmit}>
             <FormGroup>
-            <Label className="Rental-Content" for="exampleCustomSelect">Select Neighborhood</Label> <br />
+            {/* <Label className="Rental-Content selectNeighborhood" for="exampleCustomSelect">Select Neighborhood</Label> <br /> */}
             <br />
             <CustomInput onChange={this.handleNeighborhoodChange} type="select" id="exampleCustomSelect" name="nighborhood">
                 <option value="Seattle">Seattle</option>
@@ -140,12 +140,10 @@ class Rent extends React.Component {
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                 />
-
                 </FormGroup>
                 <FormGroup>
                 <label className="rentLabel">End Date:</label> <br/>
                 <DatePicker className="react-datepicker"
-
                     selected={this.state.endDate}
                     onChange={date => this.handleChangeEnd(date)}
                     selectsEnd
@@ -157,8 +155,10 @@ class Rent extends React.Component {
             </FormGroup>
             <Button type="submit">Search!</Button>
         </Form>
+        
         {results}
-        <Rental current={this.state.currentNeighborhood}/>
+        
+        <Rental current={this.state.neighborhood}/>
         
         </div>
         </div>
