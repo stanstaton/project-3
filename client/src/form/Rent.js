@@ -72,7 +72,7 @@ class Rent extends React.Component {
         console.log(this.props.user)
         console.log(SERVER_URL)
         console.log(this.state)
-        axios.get(`http://localhost:3001/property`, {
+        axios.get(`${SERVER_URL}/property`, {
             params: {
                 maxNumberOfGuests: this.state.maxNumberOfGuests,
                 neighborhood: this.state.neighborhood,

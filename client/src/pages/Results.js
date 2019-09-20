@@ -2,6 +2,7 @@ import React from 'react'
 import SimpleImageSlider from "react-simple-image-slider";
 import { Button, CustomInput, Form, FormGroup, Label, Input, Card} from 'reactstrap';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 
 
@@ -21,7 +22,7 @@ class Results extends React.Component {
             dates_unavailable: this.props.dates_unavailable[0],
             user: null,
             newItem: null,
-            array: []
+            returnToProfile: false
         }
     }
 
@@ -64,6 +65,7 @@ class Results extends React.Component {
                 console.log('success', response)
                 localStorage.setItem('mernToken', response.data.token)
                 this.props.updateUser()
+                this.setState({returnToProfile: true})
             })
             .catch(err => {
                 console.log(err)
@@ -85,6 +87,10 @@ render () {
     let photosArr = this.props.result.photos.map((photoUrl, index) => {
         return {url: photoUrl}
     })
+
+    if (this.state.returnToProfile) {
+        return <Redirect to='/profile' />
+    }
 
     if (photosArr.length == 0) {
         photosArr = [{url: "https://cdn.pixabay.com/photo/2019/03/13/14/21/home-4052993_960_720.png"}]
