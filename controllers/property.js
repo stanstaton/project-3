@@ -59,14 +59,12 @@ router.post('/new', (req,res) => {
 })
 
 router.put('/:id', (req,res) => {
-    console.log(req.body)
     db.Property.findOne({_id: req.params.id})
     .then(property => {
-        console.dir('This is the property dates unavailable', property)
         req.body.dates_unavailable.forEach(p => {
             property.dates_unavailable.push(p)
         })
-        console.log(property)
+        
         return property.save()
         
     })

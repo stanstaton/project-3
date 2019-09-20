@@ -18,25 +18,31 @@ class Results extends React.Component {
             _id: this.props.result._id,
             city: this.props.result.city,
             state: this.props.result.state,
-            dates_unavailable: this.props.dates_unavailable,
+            dates_unavailable: this.props.dates_unavailable[0],
             user: null,
-            newItem: null
+            newItem: null,
+            array: []
         }
     }
 
-    componentDidMount = () => {
-        if(this.props.user) {
-            this.setState({user: this.props.user._id})
-        }
-        let tempArr = [...this.props.result.dates_unavailable]
-        this.state.dates_unavailable.forEach(d => {
-            tempArr.push(d)
-        })
+    // componentDidMount = () => {
+    //     if(this.props.user) {
+    //         this.setState({user: this.props.user._id})
+    //     }
+    //     let tempArr = []
+    //     console.log('this is the state dates unavailable array', this.state.array)
+    //     console.log('This is the dates unavailable array', this.props.dates_unavailable[0])
+    //     this.props.dates_unavailable.forEach(d => {
+    //         tempArr.push(d[0])
+    //         console.log('I am making an array', tempArr, 'this is what was added', d[0])
+    //     })
 
-        console.log(tempArr, this.state.dates_unavailable)
-        this.setState({dates_unavailable: tempArr})
-        console.log(this.state.dates_unavailable)
-    }
+    //     console.log('The Array build finished',tempArr, this.state.dates_unavailable)
+    //     this.setState({dates_unavailable: tempArr})
+    //     console.log('this is the state',this.state.dates_unavailable)
+    //     this.setState({dates_unavailable: this.state.dates_unavailable[0]})
+    //     console.log('this is the state',this.state.dates_unavailable)
+    // }
     
     handleSubmit = e => {
         e.preventDefault()

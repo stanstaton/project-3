@@ -16,7 +16,7 @@ let propertySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dates_unavailable: [String],
+    dates_unavailable: Array,
     description: String,
     maxNumberOfGuests: Number
 
